@@ -154,8 +154,8 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
 set tabstop=4
+set shiftwidth=4
 
 " Linebreak on 500 characters
 set lbr
@@ -281,7 +281,9 @@ function! SwitchToBuf(filename)
     endif
 endfunction
 
-"Fast edit vimrc
+""""""""""""""""""""""""""""""
+" Fast edit vimrc
+""""""""""""""""""""""""""""""
 if MySys() == 'linux'
     "Fast reloading of the .vimrc
     map <silent> <leader>sc :source ~/.vimrc<cr>
@@ -304,6 +306,14 @@ endif
 if MySys() == 'windows'
     source $VIMRUNTIME/mswin.vim
     behave mswin
+endif
+
+""""""""""""""""""""""""""""""
+" Man page
+""""""""""""""""""""""""""""""
+if MySys() == "linux"
+    " Make ":Man" command available
+    source $VIMRUNTIME/ftplugin/man.vim
 endif
 
 """"""""""""""""""""""""""""""
