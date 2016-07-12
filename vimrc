@@ -29,9 +29,6 @@ set tm=500
 let mapleader = ","
 let g:mapleader = ","
 
-" Set sessionoptions
-set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slash,unix
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,7 +52,7 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 
 " Ignore case when searching
-"set ignorecase
+set ignorecase
 
 " When searching try to be smart about cases 
 set smartcase
@@ -100,7 +97,7 @@ set autoread
 set encoding=utf8
 
 " Use Unix as the standard file type
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -156,6 +153,7 @@ set smarttab
 " 1 tab == 4 spaces
 set tabstop=4
 set shiftwidth=4
+"set softtabstop=4
 
 " Linebreak on 500 characters
 set lbr
@@ -199,7 +197,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ %{EchoFuncGetStatusLine()}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -212,6 +211,7 @@ map Q gq
 
 " Fast saving
 nmap <leader>w :w!<cr>
+nmap <leader>wq :wq<cr>
 
 " Fast quit
 nmap <leader>q :q!<cr>
@@ -233,7 +233,7 @@ nmap <leader>b :buffer
 nmap <leader>th :TOhtml<cr>
 
 " Toggle paste mode on and off
-map <silent> <leader>p :setlocal paste!<cr>
+map <leader>p :setlocal paste!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -286,18 +286,18 @@ endfunction
 """"""""""""""""""""""""""""""
 if MySys() == 'linux'
     "Fast reloading of the .vimrc
-    map <silent> <leader>sc :source ~/.vimrc<cr>
+    map <leader>sc :source ~/.vimrc<cr>
     "Fast editing of .vimrc
-    map <silent> <leader>ec :call SwitchToBuf("~/.vimrc")<cr>
+    map <leader>ec :call SwitchToBuf("~/.vimrc")<cr>
     "When .vimrc is edited, reload it
     autocmd! bufwritepost .vimrc source ~/.vimrc
 elseif MySys() == 'windows'
     " Set helplang
     set helplang=cn
     "Fast reloading of the _vimrc
-    map <silent> <leader>sc :source ~/_vimrc<cr>
+    map <leader>sc :source ~/_vimrc<cr>
     "Fast editing of _vimrc
-    map <silent> <leader>ec :call SwitchToBuf("~/_vimrc")<cr>
+    map <leader>ec :call SwitchToBuf("~/_vimrc")<cr>
     "When _vimrc is edited, reload it
     autocmd! bufwritepost _vimrc source ~/_vimrc
 endif
@@ -330,13 +330,13 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 
 " Toggle tag list on and off
-map <silent> <leader>tt :TlistToggle<cr>
+map <leader>tt :TlistToggle<cr>
 
 """"""""""""""""""""""""""""""
 " netrw setting
 """"""""""""""""""""""""""""""
 let g:netrw_winsize = 20
-nmap <silent> <leader>fe :Sexplore!<cr> 
+nmap <leader>fe :Sexplore!<cr>
 
 """"""""""""""""""""""""""""""
 " BufExplorer
@@ -367,46 +367,34 @@ let g:winManagerWidth = 30
 let g:defaultExplorer = 1
 nmap <C-W><C-F> :FirstExplorerWindow<cr>
 nmap <C-W><C-B> :BottomExplorerWindow<cr>
-nmap <silent> <leader>wm :WMToggle<cr> 
+nmap <leader>wm :WMToggle<cr>
 
 """"""""""""""""""""""""""""""
 " lookupfile setting
 """"""""""""""""""""""""""""""
-let g:LookupFile_MinPatLength = 2
+let g:LookupFile_MinPatLength = 4
 let g:LookupFile_PreserveLastPattern = 0
 let g:LookupFile_PreservePatternHistory = 1
 let g:LookupFile_AlwaysAcceptFirst = 1
 let g:LookupFile_AllowNewFiles = 0
+let g:LookupFile_DisableDefaultMap = 1
+
+"(echo "!_TAG_FILE_SORTED	2	/2=foldcase/";
+" (find . -type f -printf "%f\t%p\t1\n" | \
+" sort -f)) > ./filenametags
+
 if filereadable("./filenametags")
-    let g:LookupFile_TagExpr = '"./filenametags"'
+    let g:LookupFile_TagExpr = string('./filenametags')
 endif
 
-" lookup file with ignore case
-function! LookupFile_IgnoreCaseFunc(pattern)
-    let _tags = &tags
-    try
-        let &tags = eval(g:LookupFile_TagExpr)
-        let newpattern = '\c' . a:pattern
-        let tags = taglist(newpattern)
-    catch
-        echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
-        return ""
-    finally
-        let &tags = _tags
-    endtry
+" Don't display binary files
+let g:LookupFile_FileFilter = '\.class$\|\.o$\|\.obj$\|\.exe$\|\.jar$\|\.zip$\|\.war$\|\.ear$'
 
-    " Show the matches for what is typed so far.
-    let files = map(tags, 'v:val["filename"]')
-    return files
-endfunction
-
-let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc' 
-
-nmap <silent> <leader>lp :LUPath<cr>
-nmap <silent> <leader>lw :LUWalk<cr>
-nmap <silent> <leader>lt :LUTags<cr>
-nmap <silent> <leader>la :LUArgs<cr>
-nmap <silent> <leader>lk :LUBufs<cr>
+nmap <leader>lk :LUTags<cr>
+nmap <leader>lp :LUPath<cr>
+nmap <leader>lb :LUBufs<cr>
+nmap <leader>lw :LUWalk<cr>
+nmap <leader>la :LUArgs<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
@@ -440,9 +428,9 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>cc :cc<cr>
-nmap <leader>cl :cl<cr>
-nmap <leader>cn :cn<cr>
-nmap <leader>cp :cp<cr>
+nmap <leader>cl :clist!<cr>
+nmap <leader>cn :cnext<cr>
+nmap <leader>cp :cprevious<cr>
 nmap <leader>cw :cw 10<cr>
 nmap <leader>cq :cclose<cr>
 nmap <leader>cN :cnew<cr>
@@ -488,9 +476,34 @@ let showmarks_hlline_upper = 1
 "  <Leader>mh   - Clears the mark at the current line.
 "  <Leader>ma   - Clears all marks in the current buffer.
 "  <Leader>mm   - Places the next available mark on the current lineo
-nmap <silent> <leader>mc :ShowMarksClearMark<cr> 
+nmap <leader>mc :ShowMarksClearMark<cr>
 
 """"""""""""""""""""""""""""""
 " markbrowser setting
 """"""""""""""""""""""""""""""
-nmap <silent> <leader>mk :MarksBrowser<cr> 
+nmap <leader>mk :MarksBrowser<cr>
+
+
+""""""""""""""""""""""""""""""
+" session & viminfo
+""""""""""""""""""""""""""""""
+nmap <leader>ws :mksession! 
+nmap <leader>rs :source 
+
+nmap <leader>wi :wviminfo! 
+nmap <leader>ri :rviminfo 
+
+" Set sessionoptions
+set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slash,unix
+
+""""""""""""""""""""""""""""""
+" echofunc.vim
+""""""""""""""""""""""""""""""
+" Use the command below to create tags file including the language and signature fields.
+" ctags -R --fields=+lS
+
+" When you type '(' after a function name in insert mode, the function declaration will be displayed in the command line automatically. Then you may use Alt+- and Alt+= (configurable via EchoFuncKeyPrev and EchoFuncKeyNext) to cycle between function declarations (if exists).   
+
+" Show function name on status line. NOTE you should manually add %{EchoFuncGetStatusLine()} to your 'statusline' option. 
+let g:EchoFuncShowOnStatus = 1
+let g:EchoFuncAutoStartBalloonDeclaration = 0
