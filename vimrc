@@ -118,7 +118,7 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
 
   " For all text files load abbreviation settings
-  autocmd Filetype text source ~/.vim/abbrevs.vim
+  autocmd Filetype text source ~/.vim/scripts/abbrevs.vim
 
   " load skel.c for source files
   " autocmd BufNewFile *.[ch] 0read ~/.vim/skeletons/skel.c
