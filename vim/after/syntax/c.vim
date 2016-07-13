@@ -24,13 +24,13 @@ syn match       cLogicalOperator  display "&&\|||"
 syn match       cLogicalOperatorError display "\(&&\|||\)="
 
 " Math Operator
-hi cMathOperator            guifg=#3EFFE2 ctermfg=darkcyan 
-hi cPointerOperator         guifg=#3EFFE2 ctermfg=darkcyan 
-hi cLogicalOperator         guifg=#3EFFE2 ctermfg=darkcyan 
-hi cBinaryOperator          guifg=#3EFFE2 ctermfg=darkcyan 
-hi cBinaryOperatorError     guifg=#3EFFE2 ctermfg=darkcyan 
-hi cLogicalOperator         guifg=#3EFFE2 ctermfg=darkcyan 
-hi cLogicalOperatorError    guifg=#3EFFE2 ctermfg=darkcyan 
+hi cMathOperator            guifg=#3EFFE2 ctermfg=darkcyan
+hi cPointerOperator         guifg=#3EFFE2 ctermfg=darkcyan
+hi cLogicalOperator         guifg=#3EFFE2 ctermfg=darkcyan
+hi cBinaryOperator          guifg=#3EFFE2 ctermfg=darkcyan
+hi cBinaryOperatorError     guifg=#3EFFE2 ctermfg=darkcyan
+hi cLogicalOperator         guifg=#3EFFE2 ctermfg=darkcyan
+hi cLogicalOperatorError    guifg=#3EFFE2 ctermfg=darkcyan
 
 "========================================================
 " My Own DataType
