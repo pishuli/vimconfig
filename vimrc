@@ -120,6 +120,9 @@ if has("autocmd")
   " For all text files load abbreviation settings
   autocmd Filetype text source ~/.vim/abbrevs.vim
 
+  " load skel.c for source files
+  " autocmd BufNewFile *.[ch] 0read ~/.vim/skeletons/skel.c
+
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -245,7 +248,7 @@ nmap <leader>p :setlocal paste!<cr>
 function! HasPaste()
     if &paste
         return 'PASTE MODE  '
-    en
+    endif
     return ''
 endfunction
 
@@ -365,9 +368,9 @@ autocmd BufWinEnter \[Buf\ List\] setl nonumber
 """"""""""""""""""""""""""""""
 " winManager setting
 """"""""""""""""""""""""""""""
-let g:winManagerWindowLayout = "BufExplorer|FileExplorer,TagList"
 let g:winManagerWidth = 30
 let g:defaultExplorer = 1
+let g:winManagerWindowLayout = "BufExplorer|FileExplorer,TagList"
 nmap <C-W><C-F> :FirstExplorerWindow<cr>
 nmap <C-W><C-B> :BottomExplorerWindow<cr>
 nmap <leader>wm :WMToggle<cr>
