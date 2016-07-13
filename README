@@ -2,7 +2,6 @@ My vim configuration backup
 
 Install:
 sudo apt-get install vim
-cd vimconfig
 cp vimrc /home/$USER/.vimrc
 mkdir /home/$USER/.vim
 cp -r vim/* /home/$USER/.vim/

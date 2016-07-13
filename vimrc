@@ -117,6 +117,9 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
 
+  " For all text files load abbreviation settings
+  autocmd Filetype text source ~/.vim/abbrevs.vim
+
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -168,27 +171,27 @@ map j gj
 map k gk
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>tN :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
+nmap <leader>tn :tabnew<cr>
+nmap <leader>tN :tabnext<cr>
+nmap <leader>tp :tabprevious<cr>
+nmap <leader>tf :tabfirst<cr>
+nmap <leader>tl :tablast<cr>
+nmap <leader>to :tabonly<cr>
+nmap <leader>tc :tabclose<cr>
+nmap <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+nmap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+nmap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
@@ -224,16 +227,16 @@ nmap <leader>sp :split<cr>
 nmap <leader>vs :vsplit<cr>
 
 " Fast edit
-nmap <leader>e :edit 
+nmap <leader>e :edit<Space>
 
 " Fast buffer switch
-nmap <leader>b :buffer 
+nmap <leader>b :buffer<Space>
 
 " Convert the current window into HTML
 nmap <leader>th :TOhtml<cr>
 
 " Toggle paste mode on and off
-map <leader>p :setlocal paste!<cr>
+nmap <leader>p :setlocal paste!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -286,18 +289,18 @@ endfunction
 """"""""""""""""""""""""""""""
 if MySys() == 'linux'
     "Fast reloading of the .vimrc
-    map <leader>sc :source ~/.vimrc<cr>
+    nmap <leader>sc :source ~/.vimrc<cr>
     "Fast editing of .vimrc
-    map <leader>ec :call SwitchToBuf("~/.vimrc")<cr>
+    nmap <leader>ec :call SwitchToBuf("~/.vimrc")<cr>
     "When .vimrc is edited, reload it
     autocmd! bufwritepost .vimrc source ~/.vimrc
 elseif MySys() == 'windows'
     " Set helplang
     set helplang=cn
     "Fast reloading of the _vimrc
-    map <leader>sc :source ~/_vimrc<cr>
+    nmap <leader>sc :source ~/_vimrc<cr>
     "Fast editing of _vimrc
-    map <leader>ec :call SwitchToBuf("~/_vimrc")<cr>
+    nmap <leader>ec :call SwitchToBuf("~/_vimrc")<cr>
     "When _vimrc is edited, reload it
     autocmd! bufwritepost _vimrc source ~/_vimrc
 endif
@@ -330,7 +333,7 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 
 " Toggle tag list on and off
-map <leader>tt :TlistToggle<cr>
+nmap <leader>tt :TlistToggle<cr>
 
 """"""""""""""""""""""""""""""
 " netrw setting
@@ -487,11 +490,11 @@ nmap <leader>mk :MarksBrowser<cr>
 """"""""""""""""""""""""""""""
 " session & viminfo
 """"""""""""""""""""""""""""""
-nmap <leader>ws :mksession! 
-nmap <leader>rs :source 
+nmap <leader>ws :mksession!<Space>
+nmap <leader>rs :source<Space>
 
-nmap <leader>wi :wviminfo! 
-nmap <leader>ri :rviminfo 
+nmap <leader>wi :wviminfo!<Space>
+nmap <leader>ri :rviminfo<Space>
 
 " Set sessionoptions
 set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slash,unix
@@ -505,5 +508,8 @@ set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slas
 " When you type '(' after a function name in insert mode, the function declaration will be displayed in the command line automatically. Then you may use Alt+- and Alt+= (configurable via EchoFuncKeyPrev and EchoFuncKeyNext) to cycle between function declarations (if exists).   
 
 " Show function name on status line. NOTE you should manually add %{EchoFuncGetStatusLine()} to your 'statusline' option. 
+let g:EchoFuncKeyPrev='<S-,>'
+let g:EchoFuncKeyNext='<S-.>'
 let g:EchoFuncShowOnStatus = 1
 let g:EchoFuncAutoStartBalloonDeclaration = 0
+
