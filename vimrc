@@ -421,14 +421,22 @@ if has("cscope")
   set csverb
 endif
 
+" 0 or s: Find this C symbol
 nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+" 1 or g: Find this definition
 nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+" 2 or d: Find functions called by this function
 nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" 3 or c: Find functions calling this function
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+" 4 or t: Find this text string
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+" 6 or e: Find this egrep pattern
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+" 7 or f: Find this file
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+" 8 or i: Find files #including this file
+nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quickfix
@@ -516,3 +524,25 @@ let g:EchoFuncKeyNext='<S-.>'
 let g:EchoFuncShowOnStatus = 1
 let g:EchoFuncAutoStartBalloonDeclaration = 0
 
+""""""""""""""""""""""""""""""
+" ins-completion
+""""""""""""""""""""""""""""""
+" close preview window
+set completeopt=longest,menu
+
+" mapping
+inoremap <C-]>             <C-X><C-]>
+inoremap <C-F>             <C-X><C-F>
+inoremap <C-D>             <C-X><C-D>
+inoremap <C-L>             <C-X><C-L>
+
+inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
+inoremap <expr> <C-J>      pumvisible()?"\<PageDown>\<C-N>\<C-P>":"\<C-X><C-O>"
+inoremap <expr> <C-K>      pumvisible()?"\<PageUp>\<C-P>\<C-N>":"\<C-K>"
+inoremap <expr> <C-U>      pumvisible()?"\<C-E>":"\<C-U>"
+
+""""""""""""""""""""""""""""""
+" SuperTab
+""""""""""""""""""""""""""""""
+let g:SuperTabRetainCompletionType = 2
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
