@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VundleVim
+" Vundle, a plug-in manager for Vim.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set up Vundle
 "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -37,6 +37,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'genutils'
 Plugin 'lookupfile'
 Plugin 'winmanager'
+Plugin 'ShowMarks'
+Plugin 'Marks-Browser'
 Plugin 'echofunc.vim'
 Plugin 'bufexplorer.zip'
 Plugin 'vim-scripts/a.vim'
