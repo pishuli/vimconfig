@@ -39,13 +39,18 @@ Plugin 'lookupfile'
 Plugin 'winmanager'
 Plugin 'ShowMarks'
 Plugin 'Marks-Browser'
-Plugin 'echofunc.vim'
 Plugin 'bufexplorer.zip'
 Plugin 'vim-scripts/a.vim'
 Plugin 'vim-scripts/c.vim'
 Plugin 'vim-scripts/grep.vim'
 Plugin 'vim-scripts/taglist.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'SirVer/ultisnips'
+Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'bronson/vim-trailing-whitespace'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,7 +66,6 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -119,7 +123,7 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Show matching brackets when text indicator is over them
@@ -245,14 +249,10 @@ nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
 " Useful mappings for managing tabs
-nmap <leader>tn :tabnew<cr>
-nmap <leader>tN :tabnext<cr>
+nmap <leader>tn :tabnext<cr>
 nmap <leader>tp :tabprevious<cr>
-nmap <leader>tf :tabfirst<cr>
-nmap <leader>tl :tablast<cr>
 nmap <leader>to :tabonly<cr>
 nmap <leader>tc :tabclose<cr>
-nmap <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -268,8 +268,7 @@ nmap <leader>cd :cd %:p:h<cr>:pwd<cr>
 set laststatus=2
 
 " Format the status line
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ %{EchoFuncGetStatusLine()}
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -401,13 +400,30 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 
 " Toggle tag list on and off
-nmap <leader>tt :TlistToggle<cr>
+nmap <leader>tl :TlistToggle<cr>
+
+""""""""""""""""""""""""""""""
+" Tag bar
+""""""""""""""""""""""""""""""
+nmap <leader>tb :TagbarToggle<cr>
+let g:tagbar_autofocus = 1
 
 """"""""""""""""""""""""""""""
 " netrw setting
 """"""""""""""""""""""""""""""
 let g:netrw_winsize = 20
 nmap <leader>fe :Sexplore!<cr>
+
+""""""""""""""""""""""""""""""
+" nerdtree setting
+""""""""""""""""""""""""""""""
+nmap <leader>nt :NERDTree<cr>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+"let g:netrw_home='~/bak'
+
+"close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
 """"""""""""""""""""""""""""""
 " BufExplorer
@@ -419,7 +435,7 @@ let g:bufExplorerSplitRight=0        " Split left.
 let g:bufExplorerSplitVertical=1     " Split vertically.
 let g:bufExplorerSplitVertSize = 30  " New split window is n columns wide.
 let g:bufExplorerUseCurrentWindow=1  " Open in new window.
-autocmd BufWinEnter \[Buf\ List\] setl nonumber 
+autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
 "To start exploring in the current window, use: >
 " <Leader>be   or   :BufExplorer   or   Your custom key mapping
@@ -506,7 +522,6 @@ nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>cc :cc<cr>
 nmap <leader>cl :clist!<cr>
 nmap <leader>cn :cnext<cr>
 nmap <leader>cp :cprevious<cr>
@@ -530,7 +545,7 @@ nmap <leader>an :AN<cr>
 let Grep_Default_Options = '-i'
 let Grep_Shell_Quote_Char = "'"
 let Grep_Shell_Escape_Char = "'"
-let Grep_Default_Filelist = '*.c *.cpp *.h *.asm *.S' 
+let Grep_Default_Filelist = '*.c *.cpp *.h *.asm *.S'
 
 """"""""""""""""""""""""""""""
 " showmarks setting
@@ -546,7 +561,7 @@ let showmarks_ignore_type = "hqm"
 
 " Hilight lower & upper marks
 let showmarks_hlline_lower = 1
-let showmarks_hlline_upper = 1 
+let showmarks_hlline_upper = 1
 
 "The following mappings are setup by default:
 "
@@ -581,9 +596,9 @@ set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slas
 " Use the command below to create tags file including the language and signature fields.
 " ctags -R --fields=+lS
 
-" When you type '(' after a function name in insert mode, the function declaration will be displayed in the command line automatically. Then you may use Alt+- and Alt+= (configurable via EchoFuncKeyPrev and EchoFuncKeyNext) to cycle between function declarations (if exists).   
+" When you type '(' after a function name in insert mode, the function declaration will be displayed in the command line automatically. Then you may use Alt+- and Alt+= (configurable via EchoFuncKeyPrev and EchoFuncKeyNext) to cycle between function declarations (if exists).
 
-" Show function name on status line. NOTE you should manually add %{EchoFuncGetStatusLine()} to your 'statusline' option. 
+" Show function name on status line. NOTE you should manually add %{EchoFuncGetStatusLine()} to your 'statusline' option.
 let g:EchoFuncKeyPrev='<S-,>'
 let g:EchoFuncKeyNext='<S-.>'
 let g:EchoFuncShowOnStatus = 1
@@ -606,3 +621,28 @@ inoremap <expr> <C-J>      pumvisible()?"\<PageDown>\<C-N>\<C-P>":"\<C-X><C-O>"
 inoremap <expr> <C-K>      pumvisible()?"\<PageUp>\<C-P>\<C-N>":"\<C-K>"
 inoremap <expr> <C-U>      pumvisible()?"\<C-E>":"\<C-U>"
 
+""""""""""""""""""""""""""""""
+" vim-trailing-whitespace
+""""""""""""""""""""""""""""""
+map <leader><space> :FixWhitespace<cr>
+
+""""""""""""""""""""""""""""""
+" ultisnips
+""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
+
+""""""""""""""""""""""""""""""
+" nerdcommenter
+""""""""""""""""""""""""""""""
+let NERDSpaceDelims = 1
+" <leader>cc comment out the code selected
+" <leader>cu uncomment the code selected
+
+""""""""""""""""""""""""""""""
+" vim-powerline
+""""""""""""""""""""""""""""""
+let g:Powerline_symbols = 'unicode'
+set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
