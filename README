@@ -6,6 +6,10 @@ cp vimrc /home/$USER/.vimrc
 mkdir /home/$USER/.vim
 cp -r vim/* /home/$USER/.vim/
 
+Install Plugins:
+Launch vim and run :PluginInstall
+To install from command line: vim +PluginInstall +qall
+
 References:
 1. http://easwy.com/blog/archives/advanced-vim-skills-catalog/
 2. http://blog.csdn.net/wooin/article/details/1858917
