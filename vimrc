@@ -364,6 +364,7 @@ endif
 if MySys() == "linux"
     " Make ":Man" command available
     source $VIMRUNTIME/ftplugin/man.vim
+    nmap <leader>m :Man<Space>
 endif
 
 """"""""""""""""""""""""""""""
