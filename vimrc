@@ -33,8 +33,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'hdima/python-syntax'
 Plugin 'bronson/vim-trailing-whitespace'
 
 " All of your Plugins must be added before the following line
@@ -614,19 +616,10 @@ set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
 "<leader><Leader>s            " Find(Search) {char} forward and backward. See |f| and |F|.
 
 """"""""""""""""""""""""""""""
-" ultisnips
-""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
-
-""""""""""""""""""""""""""""""
 " Syntastic
 """"""""""""""""""""""""""""""
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '>*'
-let g:syntastic_enable_highlighting = 0
 let g:syntastic_python_checkers=['pyflakes']
 
 let g:syntastic_cpp_compiler = 'clang++'
@@ -637,23 +630,58 @@ let g:syntastic_cpp_include_dirs = ['/usr/include/']
 let g:syntastic_enable_balloons = 1 "whether to show balloons
 
 """"""""""""""""""""""""""""""
+" ultisnips
+""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger       ="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories=["~/.vim/snippets", "~/.vim/bundle/vim-snippets/UltiSnips"]
+
+" reference: https://github.com/Valloric/YouCompleteMe/issues/36#issuecomment-62941322
+" Enable tabbing through list of results
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+
+" Expand snippet or return
+let g:ulti_expand_res = 0
+function! Ulti_ExpandOrEnter()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res
+        return ''
+    else
+        return "\<return>"
+endfunction
+
+" Set <space> as primary trigger
+inoremap <return> <C-R>=Ulti_ExpandOrEnter()<CR>
+
+""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""
+set completeopt=longest,menu
+
 let g:ycm_complete_in_comments = 1
-"let g:ycm_complete_in_strings = 1 " Default 1
-"let g:ycm_collect_identifiers_from_comments_and_strings = 0 " Default 0
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_key_list_select_completion = ['<C-N>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-P>', '<Up>']
-"let g:ycm_key_invoke_completion = '<C-Space>' " Default '<C-Space>'
-"let g:ycm_key_detailed_diagnostics = '<leader>d' " Default '<leader>d'
+"let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+"let g:ycm_key_invoke_completion = '<C-Space>'
+"let g:ycm_key_detailed_diagnostics = '<leader>d'
 let g:ycm_python_binary_path = 'python'
 let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/ycm_extra_conf.py'
-
-set completeopt=longest,menu " close preview window
-"let g:ycm_add_preview_to_completeopt = 1
-"let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " mappings
 inoremap <C-]>             <C-X><C-]>
@@ -662,10 +690,6 @@ inoremap <C-D>             <C-X><C-D>
 inoremap <C-L>             <C-X><C-L>
 
 inoremap <expr> <CR>       pumvisible() ? "\<C-Y>" : "\<CR>"
-inoremap <expr> <C-J>      pumvisible() ? "\<PageDown>\<C-N>\<C-P>" : "\<C-X><C-O>"
-inoremap <expr> <C-K>      pumvisible() ? "\<PageUp>\<C-P>\<C-N>" : "\<C-K>"
-inoremap <expr> <C-U>      pumvisible() ? "\<C-E>" : "\<C-U>"
-
 inoremap <expr> <Up>       pumvisible() ? "\<C-P>" : "\<Up>"
 inoremap <expr> <Down>     pumvisible() ? "\<C-N>" : "\<Down>"
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-P>\<C-N>" : "\<PageUp>"
@@ -675,3 +699,8 @@ nnoremap <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif " close pum window when leave insert mode
+
+""""""""""""""""""""""""""""""
+" python-syntax
+""""""""""""""""""""""""""""""
+let python_highlight_all = 1
