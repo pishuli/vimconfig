@@ -4,35 +4,18 @@
 " Set up Vundle
 "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-" Configure Plugins
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
 
 Plugin 'genutils'
 Plugin 'lookupfile'
@@ -45,19 +28,16 @@ Plugin 'vim-scripts/c.vim'
 Plugin 'vim-scripts/grep.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'bronson/vim-trailing-whitespace'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -577,7 +557,6 @@ nmap <leader>mc :ShowMarksClearMark<cr>
 """"""""""""""""""""""""""""""
 nmap <leader>mk :MarksBrowser<cr>
 
-
 """"""""""""""""""""""""""""""
 " session & viminfo
 """"""""""""""""""""""""""""""
@@ -591,53 +570,15 @@ nmap <leader>ri :rviminfo<Space>
 set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slash,unix
 
 """"""""""""""""""""""""""""""
-" echofunc.vim
-""""""""""""""""""""""""""""""
-" Use the command below to create tags file including the language and signature fields.
-" ctags -R --fields=+lS
-
-" When you type '(' after a function name in insert mode, the function declaration will be displayed in the command line automatically. Then you may use Alt+- and Alt+= (configurable via EchoFuncKeyPrev and EchoFuncKeyNext) to cycle between function declarations (if exists).
-
-" Show function name on status line. NOTE you should manually add %{EchoFuncGetStatusLine()} to your 'statusline' option.
-let g:EchoFuncKeyPrev='<S-,>'
-let g:EchoFuncKeyNext='<S-.>'
-let g:EchoFuncShowOnStatus = 1
-let g:EchoFuncAutoStartBalloonDeclaration = 0
-
-""""""""""""""""""""""""""""""
-" ins-completion
-""""""""""""""""""""""""""""""
-" close preview window
-set completeopt=longest,menu
-
-" mapping
-inoremap <C-]>             <C-X><C-]>
-inoremap <C-F>             <C-X><C-F>
-inoremap <C-D>             <C-X><C-D>
-inoremap <C-L>             <C-X><C-L>
-
-inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
-inoremap <expr> <C-J>      pumvisible()?"\<PageDown>\<C-N>\<C-P>":"\<C-X><C-O>"
-inoremap <expr> <C-K>      pumvisible()?"\<PageUp>\<C-P>\<C-N>":"\<C-K>"
-inoremap <expr> <C-U>      pumvisible()?"\<C-E>":"\<C-U>"
-
-""""""""""""""""""""""""""""""
 " vim-trailing-whitespace
 """"""""""""""""""""""""""""""
 map <leader><space> :FixWhitespace<cr>
 
 """"""""""""""""""""""""""""""
-" ultisnips
-""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
-
-""""""""""""""""""""""""""""""
 " nerdcommenter
 """"""""""""""""""""""""""""""
 let NERDSpaceDelims = 1
+" mappings:
 " <leader>cc comment out the code selected
 " <leader>cu uncomment the code selected
 
@@ -646,3 +587,48 @@ let NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""
 let g:Powerline_symbols = 'unicode'
 set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
+
+""""""""""""""""""""""""""""""
+" ultisnips
+""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
+
+""""""""""""""""""""""""""""""
+" YouCompleteMe
+""""""""""""""""""""""""""""""
+let g:ycm_complete_in_comments = 1
+"let g:ycm_complete_in_strings = 1 " Default 1
+"let g:ycm_collect_identifiers_from_comments_and_strings = 0 " Default 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_list_select_completion = ['<C-N>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-P>', '<Up>']
+"let g:ycm_key_invoke_completion = '<C-Space>' " Default '<C-Space>'
+"let g:ycm_key_detailed_diagnostics = '<leader>d' " Default '<leader>d'
+let g:ycm_python_binary_path = 'python'
+let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/ycm_extra_conf.py'
+
+set completeopt=longest,menu " close preview window
+"let g:ycm_add_preview_to_completeopt = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" mappings
+inoremap <C-]>             <C-X><C-]>
+inoremap <C-F>             <C-X><C-F>
+inoremap <C-D>             <C-X><C-D>
+inoremap <C-L>             <C-X><C-L>
+
+inoremap <expr> <CR>       pumvisible() ? "\<C-Y>" : "\<CR>"
+inoremap <expr> <C-J>      pumvisible() ? "\<PageDown>\<C-N>\<C-P>" : "\<C-X><C-O>"
+inoremap <expr> <C-K>      pumvisible() ? "\<PageUp>\<C-P>\<C-N>" : "\<C-K>"
+inoremap <expr> <C-U>      pumvisible() ? "\<C-E>" : "\<C-U>"
+
+inoremap <expr> <Up>       pumvisible() ? "\<C-P>" : "\<Up>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-N>" : "\<Down>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-P>\<C-N>" : "\<PageUp>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-N>\<C-P>" : "\<PageDown>"
+
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif " close pum window when leave insert mode
