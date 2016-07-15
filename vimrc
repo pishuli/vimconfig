@@ -31,7 +31,9 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'SirVer/ultisnips'
+Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'bronson/vim-trailing-whitespace'
 
@@ -229,17 +231,17 @@ nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
 " Useful mappings for managing tabs
-nmap <leader>tn :tabnext<cr>
-nmap <leader>tp :tabprevious<cr>
-nmap <leader>to :tabonly<cr>
-nmap <leader>tc :tabclose<cr>
+nmap <leader>tn :tabnext<CR>
+nmap <leader>tp :tabprevious<CR>
+nmap <leader>to :tabonly<CR>
+nmap <leader>tc :tabclose<CR>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-nmap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+nmap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 
 " Switch CWD to the directory of the open buffer
-nmap <leader>cd :cd %:p:h<cr>:pwd<cr>
+nmap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
@@ -260,18 +262,18 @@ map Q gq
 "map 0 ^
 
 " Fast saving
-nmap <leader>w :w!<cr>
-nmap <leader>wq :wq<cr>
+nmap <leader>w :w!<CR>
+nmap <leader>wq :wq<CR>
 
 " Fast quit
-nmap <leader>q :q!<cr>
-nmap <leader>qa :qa!<cr>
+nmap <leader>q :q!<CR>
+nmap <leader>qa :qa!<CR>
 
 " Fast split window
-nmap <leader>sp :split<cr>
+nmap <leader>sp :split<CR>
 
 " Fast split window vertical
-nmap <leader>vs :vsplit<cr>
+nmap <leader>vs :vsplit<CR>
 
 " Fast edit
 nmap <leader>e :edit<Space>
@@ -280,10 +282,10 @@ nmap <leader>e :edit<Space>
 nmap <leader>b :buffer<Space>
 
 " Convert the current window into HTML
-nmap <leader>th :TOhtml<cr>
+nmap <leader>th :TOhtml<CR>
 
 " Toggle paste mode on and off
-nmap <leader>p :setlocal paste!<cr>
+nmap <leader>p :setlocal paste!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -336,18 +338,18 @@ endfunction
 """"""""""""""""""""""""""""""
 if MySys() == 'linux'
     "Fast reloading of the .vimrc
-    nmap <leader>sc :source ~/.vimrc<cr>
+    nmap <leader>sc :source ~/.vimrc<CR>
     "Fast editing of .vimrc
-    nmap <leader>ec :call SwitchToBuf("~/.vimrc")<cr>
+    nmap <leader>ec :call SwitchToBuf("~/.vimrc")<CR>
     "When .vimrc is edited, reload it
     autocmd! bufwritepost .vimrc source ~/.vimrc
 elseif MySys() == 'windows'
     " Set helplang
     set helplang=cn
     "Fast reloading of the _vimrc
-    nmap <leader>sc :source ~/_vimrc<cr>
+    nmap <leader>sc :source ~/_vimrc<CR>
     "Fast editing of _vimrc
-    nmap <leader>ec :call SwitchToBuf("~/_vimrc")<cr>
+    nmap <leader>ec :call SwitchToBuf("~/_vimrc")<CR>
     "When _vimrc is edited, reload it
     autocmd! bufwritepost _vimrc source ~/_vimrc
 endif
@@ -381,24 +383,24 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 
 " Toggle tag list on and off
-nmap <leader>tl :TlistToggle<cr>
+nmap <leader>tl :TlistToggle<CR>
 
 """"""""""""""""""""""""""""""
 " Tag bar
 """"""""""""""""""""""""""""""
-nmap <leader>tb :TagbarToggle<cr>
+nmap <leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 """"""""""""""""""""""""""""""
 " netrw setting
 """"""""""""""""""""""""""""""
 let g:netrw_winsize = 20
-nmap <leader>fe :Sexplore!<cr>
+nmap <leader>fe :Sexplore!<CR>
 
 """"""""""""""""""""""""""""""
 " nerdtree setting
 """"""""""""""""""""""""""""""
-nmap <leader>nt :NERDTree<cr>
+nmap <leader>nt :NERDTree<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 "let g:netrw_home='~/bak'
@@ -433,9 +435,9 @@ autocmd BufWinEnter \[Buf\ List\] setl nonumber
 let g:winManagerWidth = 30
 let g:defaultExplorer = 1
 let g:winManagerWindowLayout = "BufExplorer|FileExplorer,TagList"
-nmap <C-W><C-F> :FirstExplorerWindow<cr>
-nmap <C-W><C-B> :BottomExplorerWindow<cr>
-nmap <leader>wm :WMToggle<cr>
+nmap <C-W><C-F> :FirstExplorerWindow<CR>
+nmap <C-W><C-B> :BottomExplorerWindow<CR>
+nmap <leader>wm :WMToggle<CR>
 
 """"""""""""""""""""""""""""""
 " lookupfile setting
@@ -458,11 +460,11 @@ endif
 " Don't display binary files
 let g:LookupFile_FileFilter = '\.class$\|\.o$\|\.obj$\|\.exe$\|\.jar$\|\.zip$\|\.war$\|\.ear$'
 
-nmap <leader>lk :LUTags<cr>
-nmap <leader>lp :LUPath<cr>
-nmap <leader>lb :LUBufs<cr>
-nmap <leader>lw :LUWalk<cr>
-nmap <leader>la :LUArgs<cr>
+nmap <leader>lk :LUTags<CR>
+nmap <leader>lp :LUPath<CR>
+nmap <leader>lb :LUBufs<CR>
+nmap <leader>lw :LUWalk<CR>
+nmap <leader>la :LUArgs<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
@@ -503,22 +505,22 @@ nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>cl :clist!<cr>
-nmap <leader>cn :cnext<cr>
-nmap <leader>cp :cprevious<cr>
-nmap <leader>cw :cw 10<cr>
-nmap <leader>cq :cclose<cr>
-nmap <leader>cN :cnew<cr>
-nmap <leader>col :col<cr>
+nmap <leader>cl :clist!<CR>
+nmap <leader>cn :cnext<CR>
+nmap <leader>cp :cprevious<CR>
+nmap <leader>cw :cw 10<CR>
+nmap <leader>cq :cclose<CR>
+nmap <leader>cN :cnew<CR>
+nmap <leader>col :col<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Alternate Files quickly (a.vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>a :A<cr>
-nmap <leader>as :AS<cr>
-nmap <leader>av :AV<cr>
-nmap <leader>at :AT<cr>
-nmap <leader>an :AN<cr>
+nmap <leader>a :A<CR>
+nmap <leader>as :AS<CR>
+nmap <leader>av :AV<CR>
+nmap <leader>at :AT<CR>
+nmap <leader>an :AN<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " grep.vim
@@ -551,12 +553,12 @@ let showmarks_hlline_upper = 1
 "  <Leader>mh   - Clears the mark at the current line.
 "  <Leader>ma   - Clears all marks in the current buffer.
 "  <Leader>mm   - Places the next available mark on the current lineo
-nmap <leader>mc :ShowMarksClearMark<cr>
+nmap <leader>mc :ShowMarksClearMark<CR>
 
 """"""""""""""""""""""""""""""
 " markbrowser setting
 """"""""""""""""""""""""""""""
-nmap <leader>mk :MarksBrowser<cr>
+nmap <leader>mk :MarksBrowser<CR>
 
 """"""""""""""""""""""""""""""
 " session & viminfo
@@ -573,7 +575,7 @@ set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slas
 """"""""""""""""""""""""""""""
 " vim-trailing-whitespace
 """"""""""""""""""""""""""""""
-map <leader><space> :FixWhitespace<cr>
+map <leader><space> :FixWhitespace<CR>
 
 """"""""""""""""""""""""""""""
 " nerdcommenter
@@ -590,12 +592,49 @@ let g:Powerline_symbols = 'unicode'
 set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
 
 """"""""""""""""""""""""""""""
+" easymotion
+""""""""""""""""""""""""""""""
+"Default Mappings
+"<leader><Leader>f{char}      " Find {char} to the right. See |f|.
+"<leader><Leader>F{char}      " Find {char} to the left. See |F|.
+"<leader><Leader>t{char}      " Till before the {char} to the right. See |t|.
+"<leader><Leader>T{char}      " Till after the {char} to the left. See |T|.
+"<leader><Leader>w            " Beginning of word forward. See |w|.
+"<leader><Leader>W            " Beginning of WORD forward. See |W|.
+"<leader><Leader>b            " Beginning of word backward. See |b|.
+"<leader><Leader>B            " Beginning of WORD backward. See |B|.
+"<leader><Leader>e            " End of word forward. See |e|.
+"<leader><Leader>E            " End of WORD forward. See |E|.
+"<leader><Leader>ge           " End of word backward. See |ge|.
+"<leader><Leader>gE           " End of WORD backward. See |gE|.
+"<leader><Leader>j            " Line downward. See |j|.
+"<leader><Leader>k            " Line upward. See |k|.
+"<leader><Leader>n            " Jump to latest / or ? forward. See |n|.
+"<leader><Leader>N            " Jump to latest / or ? backward. See |N|.
+"<leader><Leader>s            " Find(Search) {char} forward and backward. See |f| and |F|.
+
+""""""""""""""""""""""""""""""
 " ultisnips
 """"""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
+
+""""""""""""""""""""""""""""""
+" Syntastic
+""""""""""""""""""""""""""""""
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '>*'
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_python_checkers=['pyflakes']
+
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_enable_balloons = 1 "whether to show balloons
 
 """"""""""""""""""""""""""""""
 " YouCompleteMe
@@ -631,5 +670,8 @@ inoremap <expr> <Up>       pumvisible() ? "\<C-P>" : "\<Up>"
 inoremap <expr> <Down>     pumvisible() ? "\<C-N>" : "\<Down>"
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-P>\<C-N>" : "\<PageUp>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-N>\<C-P>" : "\<PageDown>"
+
+nnoremap <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif " close pum window when leave insert mode
