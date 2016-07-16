@@ -1,9 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle, a plug-in manager for Vim.
+" Vundle plugin manager
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set up Vundle
-"git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -17,31 +14,28 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'genutils'
-Plugin 'lookupfile'
-Plugin 'winmanager'
 Plugin 'ShowMarks'
 Plugin 'Marks-Browser'
-Plugin 'bufexplorer.zip'
-Plugin 'vim-scripts/a.vim'
-Plugin 'vim-scripts/c.vim'
-Plugin 'vim-scripts/grep.vim'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tomasr/molokai'
+Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'majutsushi/tagbar'
+Plugin 'ervandew/supertab'
 Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'hdima/python-syntax'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'vim-scripts/TaskList.vim'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'bronson/vim-trailing-whitespace'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -52,16 +46,8 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
+" General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-"set nocompatible
-
-" Set color scheme
-"colorscheme desert
-colorscheme desert_my
-
 " Sets how many lines of history VIM has to remember
 set history=50
 
@@ -83,7 +69,14 @@ let mapleader = ","
 let g:mapleader = ","
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
+" Color scheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
+let g:molokai_original = 1
+colorscheme molokai_my
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn on the WiLd menu
 set wildmenu
@@ -136,12 +129,11 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and indent related
+" Files, backups and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nowb
 set nobackup
-set noswapfile
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -152,45 +144,39 @@ set encoding=utf8
 " Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc
+" Ignore compiled and backup files
+set wildignore=*.o,*.pyc,*~
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+" Put these in an autocmd group, so that we can delete them easily.
+augroup vimrcEx
+au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+" For all text files set 'textwidth' to 78 characters.
+autocmd FileType text setlocal textwidth=78
 
-  " For all text files load abbreviation settings
-  autocmd Filetype text source ~/.vim/scripts/abbrevs.vim
+" For all text files load abbreviation settings
+autocmd Filetype text source ~/.vim/scripts/abbrevs.vim
 
-  " load skel.c for source files
-  " autocmd BufNewFile *.[ch] 0read ~/.vim/scripts/skel.c
+" load skel.c for C source files
+" autocmd BufNewFile *.[ch] 0read ~/.vim/scripts/skel.c
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
 
-  augroup END
-else
-  set autoindent        " always set autoindenting on
-  set smartindent       "Smart indent
-endif " has("autocmd")
+augroup END
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -201,7 +187,7 @@ if !exists(":DiffOrig")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab
+" Text, tab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
@@ -212,7 +198,6 @@ set smarttab
 " 1 tab == 4 spaces
 set tabstop=4
 set shiftwidth=4
-"set softtabstop=4
 
 " Linebreak on 500 characters
 set lbr
@@ -220,17 +205,17 @@ set tw=500
 set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
+" Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
 
 " Smart way to move between windows
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " Useful mappings for managing tabs
 nmap <leader>tn :tabnext<CR>
@@ -246,16 +231,7 @@ nmap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 nmap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Status line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
-
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
+" Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -283,32 +259,12 @@ nmap <leader>e :edit<Space>
 " Fast buffer switch
 nmap <leader>b :buffer<Space>
 
-" Convert the current window into HTML
-nmap <leader>th :TOhtml<CR>
-
 " Toggle paste mode on and off
 nmap <leader>p :setlocal paste!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
+" Fast edit vimrc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfunction
-
-" Platform detect
-function! MySys()
-  if has("win32")
-    return "windows"
-  else
-    return "linux"
-  endif
-endfunction
-
 function! SwitchToBuf(filename)
     "let fullfn = substitute(a:filename, "^\\~/", $HOME . "/", "")
     " find in current tab
@@ -335,141 +291,23 @@ function! SwitchToBuf(filename)
     endif
 endfunction
 
-""""""""""""""""""""""""""""""
-" Fast edit vimrc
-""""""""""""""""""""""""""""""
-if MySys() == 'linux'
-    "Fast reloading of the .vimrc
-    nmap <leader>sc :source ~/.vimrc<CR>
-    "Fast editing of .vimrc
-    nmap <leader>ec :call SwitchToBuf("~/.vimrc")<CR>
-    "When .vimrc is edited, reload it
-    autocmd! bufwritepost .vimrc source ~/.vimrc
-elseif MySys() == 'windows'
-    " Set helplang
-    set helplang=cn
-    "Fast reloading of the _vimrc
-    nmap <leader>sc :source ~/_vimrc<CR>
-    "Fast editing of _vimrc
-    nmap <leader>ec :call SwitchToBuf("~/_vimrc")<CR>
-    "When _vimrc is edited, reload it
-    autocmd! bufwritepost _vimrc source ~/_vimrc
-endif
+"Fast reloading of the .vimrc
+nmap <leader>sc :source ~/.vimrc<CR>
 
-" For windows version
-if MySys() == 'windows'
-    source $VIMRUNTIME/mswin.vim
-    behave mswin
-endif
+"Fast editing of .vimrc
+nmap <leader>ec :call SwitchToBuf("~/.vimrc")<CR>
 
-""""""""""""""""""""""""""""""
-" Man page
-""""""""""""""""""""""""""""""
-if MySys() == "linux"
-    " Make ":Man" command available
-    source $VIMRUNTIME/ftplugin/man.vim
-    nmap <leader>m :Man<Space>
-endif
-
-""""""""""""""""""""""""""""""
-" Tag list (ctags)
-""""""""""""""""""""""""""""""
-if MySys() == "windows"
-    let Tlist_Ctags_Cmd = 'ctags'
-elseif MySys() == "linux"
-    let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-endif
-
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-
-" Toggle tag list on and off
-nmap <leader>tl :TlistToggle<CR>
-
-""""""""""""""""""""""""""""""
-" Tag bar
-""""""""""""""""""""""""""""""
-nmap <leader>tb :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-""""""""""""""""""""""""""""""
-" netrw setting
-""""""""""""""""""""""""""""""
-let g:netrw_winsize = 20
-nmap <leader>fe :Sexplore!<CR>
-
-""""""""""""""""""""""""""""""
-" nerdtree setting
-""""""""""""""""""""""""""""""
-nmap <leader>nt :NERDTree<CR>
-let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-"let g:netrw_home='~/bak'
-
-"close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
-
-""""""""""""""""""""""""""""""
-" BufExplorer
-""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0       " Do not show default help.
-let g:bufExplorerShowRelativePath=1  " Show relative paths.
-let g:bufExplorerSortBy='mru'        " Sort by most recently used.
-let g:bufExplorerSplitRight=0        " Split left.
-let g:bufExplorerSplitVertical=1     " Split vertically.
-let g:bufExplorerSplitVertSize = 30  " New split window is n columns wide.
-let g:bufExplorerUseCurrentWindow=1  " Open in new window.
-autocmd BufWinEnter \[Buf\ List\] setl nonumber
-
-"To start exploring in the current window, use: >
-" <Leader>be   or   :BufExplorer   or   Your custom key mapping
-"To toggle bufexplorer on or off in the current window, use: >
-" <Leader>bt   or   :ToggleBufExplorer   or   Your custom key mapping
-"To start exploring in a newly split horizontal window, use: >
-" <Leader>bs   or   :BufExplorerHorizontalSplit   or   Your custom key mapping
-"To start exploring in a newly split vertical window, use: >
-" <Leader>bv   or   :BufExplorerVerticalSplit   or   Your custom key mapping
-
-""""""""""""""""""""""""""""""
-" winManager setting
-""""""""""""""""""""""""""""""
-let g:winManagerWidth = 30
-let g:defaultExplorer = 1
-let g:winManagerWindowLayout = "BufExplorer|FileExplorer,TagList"
-nmap <C-W><C-F> :FirstExplorerWindow<CR>
-nmap <C-W><C-B> :BottomExplorerWindow<CR>
-nmap <leader>wm :WMToggle<CR>
-
-""""""""""""""""""""""""""""""
-" lookupfile setting
-""""""""""""""""""""""""""""""
-let g:LookupFile_MinPatLength = 4
-let g:LookupFile_PreserveLastPattern = 0
-let g:LookupFile_PreservePatternHistory = 1
-let g:LookupFile_AlwaysAcceptFirst = 1
-let g:LookupFile_AllowNewFiles = 0
-let g:LookupFile_DisableDefaultMap = 1
-
-"(echo "!_TAG_FILE_SORTED	2	/2=foldcase/";
-" (find . -type f -printf "%f\t%p\t1\n" | \
-" sort -f)) > ./filenametags
-
-if filereadable("./filenametags")
-    let g:LookupFile_TagExpr = string('./filenametags')
-endif
-
-" Don't display binary files
-let g:LookupFile_FileFilter = '\.class$\|\.o$\|\.obj$\|\.exe$\|\.jar$\|\.zip$\|\.war$\|\.ear$'
-
-nmap <leader>lk :LUTags<CR>
-nmap <leader>lp :LUPath<CR>
-nmap <leader>lb :LUBufs<CR>
-nmap <leader>lw :LUWalk<CR>
-nmap <leader>la :LUArgs<CR>
+"When .vimrc is edited, reload it
+autocmd! bufwritepost .vimrc source ~/.vimrc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cscope setting
+" Man page
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+source $VIMRUNTIME/ftplugin/man.vim
+nmap <leader>m :Man<Space>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Cscope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("cscope")
   set csprg=/usr/bin/cscope
@@ -505,7 +343,7 @@ nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" quickfix
+" Quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>cl :clist!<CR>
 nmap <leader>cn :cnext<CR>
@@ -513,28 +351,18 @@ nmap <leader>cp :cprevious<CR>
 nmap <leader>cw :cw 10<CR>
 nmap <leader>cq :cclose<CR>
 nmap <leader>cN :cnew<CR>
-nmap <leader>col :col<CR>
+nmap <leader>co :col<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Alternate Files quickly (a.vim)
+" Powerline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>a :A<CR>
-nmap <leader>as :AS<CR>
-nmap <leader>av :AV<CR>
-nmap <leader>at :AT<CR>
-nmap <leader>an :AN<CR>
+" Always show the status line
+set laststatus=2
+let g:Powerline_symbols = 'unicode'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" grep.vim
+" Showmarks
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Grep_Default_Options = '-i'
-let Grep_Shell_Quote_Char = "'"
-let Grep_Shell_Escape_Char = "'"
-let Grep_Default_Filelist = '*.c *.cpp *.h *.asm *.S'
-
-""""""""""""""""""""""""""""""
-" showmarks setting
-""""""""""""""""""""""""""""""
 " Enable ShowMarks
 let showmarks_enable = 1
 
@@ -549,53 +377,19 @@ let showmarks_hlline_lower = 1
 let showmarks_hlline_upper = 1
 
 "The following mappings are setup by default:
-"
 "  <Leader>mt   - Toggles ShowMarks on and off.
-"  <Leader>mo   - Forces ShowMarks on.
-"  <Leader>mh   - Clears the mark at the current line.
 "  <Leader>ma   - Clears all marks in the current buffer.
 "  <Leader>mm   - Places the next available mark on the current lineo
 nmap <leader>mc :ShowMarksClearMark<CR>
 
-""""""""""""""""""""""""""""""
-" markbrowser setting
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Markbrowser
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>mk :MarksBrowser<CR>
 
-""""""""""""""""""""""""""""""
-" session & viminfo
-""""""""""""""""""""""""""""""
-nmap <leader>ws :mksession!<Space>
-nmap <leader>rs :source<Space>
-
-nmap <leader>wi :wviminfo!<Space>
-nmap <leader>ri :rviminfo<Space>
-
-" Set sessionoptions
-set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slash,unix
-
-""""""""""""""""""""""""""""""
-" vim-trailing-whitespace
-""""""""""""""""""""""""""""""
-map <leader><space> :FixWhitespace<CR>
-
-""""""""""""""""""""""""""""""
-" nerdcommenter
-""""""""""""""""""""""""""""""
-let NERDSpaceDelims = 1
-" mappings:
-" <leader>cc comment out the code selected
-" <leader>cu uncomment the code selected
-
-""""""""""""""""""""""""""""""
-" vim-powerline
-""""""""""""""""""""""""""""""
-let g:Powerline_symbols = 'unicode'
-set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
-
-""""""""""""""""""""""""""""""
-" easymotion
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Easymotion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Default Mappings
 "<leader><Leader>f{char}      " Find {char} to the right. See |f|.
 "<leader><Leader>F{char}      " Find {char} to the left. See |F|.
@@ -615,71 +409,82 @@ set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
 "<leader><Leader>N            " Jump to latest / or ? backward. See |N|.
 "<leader><Leader>s            " Find(Search) {char} forward and backward. See |f| and |F|.
 
-""""""""""""""""""""""""""""""
-" Syntastic
-""""""""""""""""""""""""""""""
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '>*'
-let g:syntastic_python_checkers=['pyflakes']
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nerdcommenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let NERDSpaceDelims = 1
+" mappings:
+" <leader>cc comment out the code selected
+" <leader>cu uncomment the code selected
 
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_remove_include_errors = 1
-let g:syntastic_cpp_include_dirs = ['/usr/include/']
-let g:syntastic_enable_balloons = 1 "whether to show balloons
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nerdtree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>nt :NERDTreeToggle<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 
-""""""""""""""""""""""""""""""
-" ultisnips
-""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger       ="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetDirectories=["~/.vim/snippets", "~/.vim/bundle/vim-snippets/UltiSnips"]
+"close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
-" reference: https://github.com/Valloric/YouCompleteMe/issues/36#issuecomment-62941322
-" Enable tabbing through list of results
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
 
-au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+  \ }
 
-" Expand snippet or return
-let g:ulti_expand_res = 0
-function! Ulti_ExpandOrEnter()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res
-        return ''
-    else
-        return "\<return>"
-endfunction
+let g:ctrlp_user_command =
+  \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 
-" Set <space> as primary trigger
-inoremap <return> <C-R>=Ulti_ExpandOrEnter()<CR>
+let g:ctrlp_open_new_file = 't'
 
-""""""""""""""""""""""""""""""
+let g:ctrlp_follow_symlinks = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Taglist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
+" Toggle tag list on and off
+nmap <leader>tl :TlistToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tagbar_autofocus = 1
+nmap <leader>tb :TagbarToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Task list
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>td <Plug>TaskList
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SuperTab
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = '<C-TAB>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=longest,menu
 
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-"let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 "let g:ycm_key_invoke_completion = '<C-Space>'
 "let g:ycm_key_detailed_diagnostics = '<leader>d'
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 let g:ycm_python_binary_path = 'python'
 let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/ycm_extra_conf.py'
 
@@ -700,7 +505,41 @@ nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif " close pum window when leave insert mode
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ultisnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger       = '<TAB>'
+let g:UltiSnipsJumpForwardTrigger  = '<TAB>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
+let g:UltiSnipsSnippetDirectories=["~/.vim/snippets", "~/.vim/bundle/vim-snippets/UltiSnips"]
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_error_symbol = '✗>'
+let g:syntastic_warning_symbol = '*>'
+let g:syntastic_python_checkers=['pyflakes']
+
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_enable_balloons = 1 "whether to show balloons
+
 """"""""""""""""""""""""""""""
-" python-syntax
+" session & viminfo
 """"""""""""""""""""""""""""""
-let python_highlight_all = 1
+nmap <leader>ws :mksession!<Space>
+nmap <leader>rs :source<Space>
+
+nmap <leader>wi :wviminfo!<Space>
+nmap <leader>ri :rviminfo<Space>
+
+" Set sessionoptions
+set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slash,unix
+
+""""""""""""""""""""""""""""""
+" Trailing whitespace
+""""""""""""""""""""""""""""""
+map <leader><space> :FixWhitespace<CR>

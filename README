@@ -1,17 +1,22 @@
 My vim configuration backup
 
-Install:
+Install Vim:
 sudo apt-get install vim
+
+Install Vundle plugin manager:
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+Restore settings:
 cp vimrc /home/$USER/.vimrc
-mkdir /home/$USER/.vim
 cp -r vim/* /home/$USER/.vim/
 
-Install Plugins:
+Install other plugins:
 Launch vim and run :PluginInstall
-To install from command line: vim +PluginInstall +qall
+Or install from command line: vim +PluginInstall +qall
 
 References:
 1. http://easwy.com/blog/archives/advanced-vim-skills-catalog/
 2. http://blog.csdn.net/wooin/article/details/1858917
 3. http://blog.csdn.net/wooin/article/details/2004470
 4. http://www.cnblogs.com/zhongcq/p/3642794.html
+5. http://blog.csdn.net/fivedoumi/article/details/50594348
