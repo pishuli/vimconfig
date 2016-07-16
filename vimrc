@@ -18,18 +18,21 @@ Plugin 'ShowMarks'
 Plugin 'Marks-Browser'
 Plugin 'tomasr/molokai'
 Plugin 'kien/ctrlp.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'majutsushi/tagbar'
-Plugin 'ervandew/supertab'
-Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/TaskList.vim'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/sessionman.vim'
+Plugin 'ervandew/supertab'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bronson/vim-trailing-whitespace'
 
 " All of your Plugins must be added before the following line
@@ -292,10 +295,10 @@ function! SwitchToBuf(filename)
 endfunction
 
 "Fast reloading of the .vimrc
-nmap <leader>sc :source ~/.vimrc<CR>
+nmap <leader>sv :source ~/.vimrc<CR>
 
 "Fast editing of .vimrc
-nmap <leader>ec :call SwitchToBuf("~/.vimrc")<CR>
+nmap <leader>ev :call SwitchToBuf("~/.vimrc")<CR>
 
 "When .vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -352,13 +355,6 @@ nmap <leader>cw :cw 10<CR>
 nmap <leader>cq :cclose<CR>
 nmap <leader>cN :cnew<CR>
 nmap <leader>co :col<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Powerline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
-let g:Powerline_symbols = 'unicode'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Showmarks
@@ -432,6 +428,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
+" mappings inside CtrlP's prompt,
+" see :help ctrlp_prompt_mappings
+
+let g:ctrlp_mruf_max = 250
+let g:ctrlp_max_files = 1000
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 let g:ctrlp_custom_ignore = {
@@ -442,10 +445,6 @@ let g:ctrlp_custom_ignore = {
 
 let g:ctrlp_user_command =
   \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
-
-let g:ctrlp_open_new_file = 't'
-
-let g:ctrlp_follow_symlinks = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Taglist
@@ -527,19 +526,56 @@ let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_include_dirs = ['/usr/include/']
 let g:syntastic_enable_balloons = 1 "whether to show balloons
 
-""""""""""""""""""""""""""""""
-" session & viminfo
-""""""""""""""""""""""""""""""
-nmap <leader>ws :mksession!<Space>
-nmap <leader>rs :source<Space>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Sessionman
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>sl :SessionList<CR>
+nmap <leader>ss :SessionSave<CR>
+nmap <leader>sc :SessionClose<CR>
 
-nmap <leader>wi :wviminfo!<Space>
-nmap <leader>ri :rviminfo<Space>
+set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 
-" Set sessionoptions
-set sessionoptions=blank,buffers,folds,help,options,tabpages,winsize,sesdir,slash,unix
-
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trailing whitespace
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader><space> :FixWhitespace<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2 " Always show the status line
+let g:airline_theme='molokai'
+let g:airline_powerline_fonts=1
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+let g:airline#extensions#whitespace#enabled = 0
+
+"variable names                default contents
+"----------------------------------------------------------------------------
+"let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
+"let g:airline_section_b       (hunks, branch)
+"let g:airline_section_c       (bufferline or filename)
+"let g:airline_section_gutter  (readonly, csv)
+"let g:airline_section_x       (tagbar, filetype, virtualenv)
+"let g:airline_section_y       (fileencoding, fileformat)
+"let g:airline_section_z       (percentage, line number, column number)
+"let g:airline_section_error   (ycm_error_count, syntastic, eclim)
+"let g:airline_section_warning (ycm_warning_count, whitespace)
+
+"let g:airline#extensions#default#layout = [
+"    \ [ 'a', 'b', 'c' ],
+"    \ [ 'x', 'y', 'z', 'error', 'warning' ]
+"    \ ]
+"
