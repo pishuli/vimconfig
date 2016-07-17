@@ -19,8 +19,8 @@ Plugin 'Marks-Browser'
 Plugin 'tomasr/molokai'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/a.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'vim-scripts/sessionman.vim'
@@ -30,10 +30,14 @@ Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'klen/python-mode'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -300,9 +304,6 @@ nmap <leader>sv :source ~/.vimrc<CR>
 "Fast editing of .vimrc
 nmap <leader>ev :call SwitchToBuf("~/.vimrc")<CR>
 
-"When .vimrc is edited, reload it
-autocmd! bufwritepost .vimrc source ~/.vimrc
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Man page
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -355,6 +356,18 @@ nmap <leader>cw :cw 10<CR>
 nmap <leader>cq :cclose<CR>
 nmap <leader>cN :cnew<CR>
 nmap <leader>co :col<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Alternate Files quickly (a.vim)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :A switches to the header file corresponding to the current file being edited (or vise versa)
+nmap <leader>a :A<cr>
+" :AS splits and switches
+nmap <leader>as :AS<cr>
+" :AV vertical splits and switches
+nmap <leader>av :AV<cr>
+" :AT new tab and switches
+nmap <leader>at :AT<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Showmarks
@@ -485,7 +498,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 let g:ycm_python_binary_path = 'python'
-let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/.ycm_extra_conf.py'
 
 " mappings
 inoremap <C-]>             <C-X><C-]>
