@@ -41,7 +41,13 @@ Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+"filetype plugin indent on    " required
+
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -83,7 +89,7 @@ let g:molokai_original = 1
 colorscheme molokai_my
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VIM user interface
+" User interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn on the WiLd menu
 set wildmenu
@@ -136,7 +142,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Files, backups and indent related
+" Files, backups
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nowb
@@ -153,12 +159,6 @@ set fileformats=unix,dos,mac
 
 " Ignore compiled and backup files
 set wildignore=*.o,*.pyc,*~
-
-" Enable file type detection.
-" Use the default filetype settings, so that mail gets 'tw' set to 72,
-" 'cindent' is on in C files, etc.
-" Also load indent files, to automatically do language-dependent indenting.
-filetype plugin indent on
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
@@ -224,6 +224,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" Remap VIM 0 to first non-blank character
+"map 0 ^
+
 " Useful mappings for managing tabs
 nmap <leader>tn :tabnext<CR>
 nmap <leader>tp :tabprevious<CR>
@@ -237,33 +243,24 @@ nmap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 " Switch CWD to the directory of the open buffer
 nmap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Don't use Ex mode, use Q for formatting
-map Q gq
+" Edit file
+nmap <leader>e :edit<Space>
 
-" Remap VIM 0 to first non-blank character
-"map 0 ^
-
-" Fast saving
+" Save file
 nmap <leader>w :w!<CR>
 nmap <leader>wq :wq<CR>
 
-" Fast quit
+" Quit window
 nmap <leader>q :q!<CR>
 nmap <leader>qa :qa!<CR>
 
-" Fast split window
+" Split window
 nmap <leader>sp :split<CR>
 
-" Fast split window vertical
+" Split window vertical
 nmap <leader>vs :vsplit<CR>
 
-" Fast edit
-nmap <leader>e :edit<Space>
-
-" Fast buffer switch
+" Switch buffer
 nmap <leader>b :buffer<Space>
 
 " Toggle paste mode on and off
@@ -349,12 +346,17 @@ nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" List all errors.
 nmap <leader>cl :clist!<CR>
+" Display the next error in the list
 nmap <leader>cn :cnext<CR>
+" Display the previous error in the list
 nmap <leader>cp :cprevious<CR>
+" Open the quickfix window when there are recognized errors
 nmap <leader>cw :cw 10<CR>
+" Close the quickfix window
 nmap <leader>cq :cclose<CR>
-nmap <leader>cN :cnew<CR>
+" Go to older error list
 nmap <leader>co :col<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -439,8 +441,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<leader>f'
 " mappings inside CtrlP's prompt,
 " see :help ctrlp_prompt_mappings
 
@@ -491,31 +493,21 @@ let g:SuperTabDefaultCompletionType = '<C-TAB>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=longest,menu
 
-let g:ycm_complete_in_comments = 1
+let g:ycm_python_binary_path = 'python'
+
+"let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-"let g:ycm_key_invoke_completion = '<C-Space>'
-"let g:ycm_key_detailed_diagnostics = '<leader>d'
+"let g:ycm_key_invoke_completion = '<C-Space>' " Default
+"let g:ycm_key_detailed_diagnostics = '<leader>d' "Default
 let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-let g:ycm_python_binary_path = 'python'
+
+let g:ycm_confirm_extra_conf=0
 let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/.ycm_extra_conf.py'
-
-" mappings
-inoremap <C-]>             <C-X><C-]>
-inoremap <C-F>             <C-X><C-F>
-inoremap <C-D>             <C-X><C-D>
-inoremap <C-L>             <C-X><C-L>
-
-inoremap <expr> <CR>       pumvisible() ? "\<C-Y>" : "\<CR>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-P>" : "\<Up>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-N>" : "\<Down>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-P>\<C-N>" : "\<PageUp>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-N>\<C-P>" : "\<PageDown>"
 
 nnoremap <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
-
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif " close pum window when leave insert mode
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ultisnips
