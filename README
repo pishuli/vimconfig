@@ -13,6 +13,13 @@ cp -r vim/* /home/$USER/.vim/
 Install other plugins:
 Launch vim and run :PluginInstall
 Or install from command line: vim +PluginInstall +qall
+after done that, please go to https://github.com/Valloric/YouCompleteMe
+to see more about the installation of YouCompleteMe plugin.
+
+Install powerline fonts:
+git clone https://github.com/powerline/fonts.git
+cd fonts && ./install.sh
+after powerline fonts installed, configure the terminal to use one of the powerline fonts.
 
 References:
 1. http://easwy.com/blog/archives/advanced-vim-skills-catalog/
