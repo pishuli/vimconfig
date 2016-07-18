@@ -35,6 +35,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'klen/python-mode'
 Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
@@ -85,7 +86,7 @@ let g:mapleader = ","
 " Color scheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
-let g:molokai_original = 1
+let g:rehash256=1
 colorscheme molokai_my
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -260,9 +261,6 @@ nmap <leader>sp :split<CR>
 " Split window vertical
 nmap <leader>vs :vsplit<CR>
 
-" Switch buffer
-nmap <leader>b :buffer<Space>
-
 " Toggle paste mode on and off
 nmap <leader>p :setlocal paste!<CR>
 
@@ -401,55 +399,47 @@ nmap <leader>mk :MarksBrowser<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Default Mappings
+"Default Mappings, see :help easymotion-default-mappings for more
 "<leader><Leader>f{char}      " Find {char} to the right. See |f|.
-"<leader><Leader>F{char}      " Find {char} to the left. See |F|.
-"<leader><Leader>t{char}      " Till before the {char} to the right. See |t|.
-"<leader><Leader>T{char}      " Till after the {char} to the left. See |T|.
 "<leader><Leader>w            " Beginning of word forward. See |w|.
-"<leader><Leader>W            " Beginning of WORD forward. See |W|.
 "<leader><Leader>b            " Beginning of word backward. See |b|.
-"<leader><Leader>B            " Beginning of WORD backward. See |B|.
-"<leader><Leader>e            " End of word forward. See |e|.
-"<leader><Leader>E            " End of WORD forward. See |E|.
-"<leader><Leader>ge           " End of word backward. See |ge|.
-"<leader><Leader>gE           " End of WORD backward. See |gE|.
 "<leader><Leader>j            " Line downward. See |j|.
 "<leader><Leader>k            " Line upward. See |k|.
-"<leader><Leader>n            " Jump to latest / or ? forward. See |n|.
-"<leader><Leader>N            " Jump to latest / or ? backward. See |N|.
 "<leader><Leader>s            " Find(Search) {char} forward and backward. See |f| and |F|.
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nerdcommenter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDSpaceDelims = 1
-" mappings:
-" <leader>cc comment out the code selected
-" <leader>cu uncomment the code selected
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Global commands
+" :NERDTree [<start-directory> | <bookmark>], help :NERDTree to see more detail
+nmap <leader>n :NERDTree<Space>
 nmap <leader>nt :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+let NERDTreeIgnore=[ '\~$', '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 
-"close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+" Bookmark commands
+" Note that the following commands are only available in the NERD tree buffer.
+" :Bookmark [<name>], bookmark the current node as <name>, help :Bookmark to see more detail
+nmap <leader>b :Bookmark<Space>
+" :ClearBookmarks [<bookmarks>], Remove all the given bookmarks. If no bookmarks are given then remove all bookmarks on the current node.
+nmap <leader>bc :ClearBookmarks<Space>
+
+" Mappings
+" I.......Toggle whether hidden files displayed....................|NERDTree-I|
+" F.......Toggle whether files are displayed.......................|NERDTree-F|
+" B.......Toggle whether the bookmark table is displayed...........|NERDTree-B|
+" See more details with :help NERDTreeMappings
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_map = '<leader>f'
-" mappings inside CtrlP's prompt,
-" see :help ctrlp_prompt_mappings
+"let g:ctrlp_map = '<c-p>' " Default
+"let g:ctrlp_cmd = 'CtrlP' " Default
+let g:ctrlp_user_command =
+  \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 
-let g:ctrlp_mruf_max = 250
-let g:ctrlp_max_files = 1000
-let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
+let g:ctrlp_switch_buffer = 'ET'
+let g:ctrlp_open_new_file = 't'
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 let g:ctrlp_custom_ignore = {
@@ -458,8 +448,11 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
   \ }
 
-let g:ctrlp_user_command =
-  \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
+nmap <leader>ff :CtrlP<CR>
+nmap <leader>fb :CtrlPBuffer<CR>
+
+" mappings inside CtrlP's prompt,
+" see :help ctrlp_prompt_mappings
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Taglist
@@ -544,6 +537,49 @@ set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 " Trailing whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader><space> :FixWhitespace<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nerdcommenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let NERDSpaceDelims = 1
+" mappings:
+" <leader>cc
+"   Comment out the current line or text selected in visual mode.
+" <leader>cu
+"   Uncomments the selected line(s).
+" <Leader>|c<space>
+"   Toggles the comment state of the selected line(s). If the topmost selected
+"   line is commented, all selected lines are uncommented and vice versa.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim-surround
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Normal mode
+"  ds  - delete a surrounding
+"  cs  - change a surrounding
+"  ys  - add a surrounding (Note: "ys" for "you surround")
+"  yS  - add a surrounding and place the surrounded text on a new line + indent it
+"  yss - add a surrounding to the whole line
+"  ySs - add a surrounding to the whole line, place it on a new line + indent it
+"  ySS - same as ySs
+"
+"  Visual mode
+"  s   - in visual mode, add a surrounding
+"  S   - in visual mode, add a surrounding but place text on new line + indent it
+"
+" see :help surround for more
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabular for aligning text
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
