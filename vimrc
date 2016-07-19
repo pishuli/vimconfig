@@ -160,6 +160,19 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text, tab
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 1 tab == 4 spaces
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+set wrap "Wrap lines
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files, backups
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
@@ -188,6 +201,10 @@ autocmd FileType text setlocal textwidth=78
 " For all text files load abbreviation settings
 autocmd Filetype text source ~/.vim/scripts/abbrevs.vim
 
+" For python files tab & indent
+" 'et' for expandtab, 'sta' for smarttab, 'sw' for shiftwidth, 'sts' for softtabstop
+autocmd FileType python setlocal et sta sw=4 sts=4
+
 " load skel.c for C source files
 " autocmd BufNewFile *.[ch] 0read ~/.vim/scripts/skel.c
 
@@ -210,24 +227,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Text, tab
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" 1 tab == 4 spaces
-set tabstop=4
-set shiftwidth=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around, tabs, windows and buffers
