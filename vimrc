@@ -32,12 +32,15 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'klen/python-mode'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
@@ -77,17 +80,60 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" do incremental searching
+set incsearch
+
+" A buffer becomes hidden when it is abandoned
+set hidden
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Color scheme
+"  Syntax and colorscheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
-let g:rehash256=1
-colorscheme molokai_my
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if has("syntax")
+  syntax on
+endif
+
+if &t_Co > 2 || has("gui_running")
+  syntax enable
+  set hlsearch
+endif
+
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+
+if &background == "light"
+    let g:solarized_termcolors=256
+    colorscheme solarized_my
+else
+    let g:rehash256=1
+    colorscheme molokai_my
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
@@ -110,37 +156,6 @@ set cmdheight=2
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" Show matching brackets when text indicator is over them
-set showmatch
-
-" do incremental searching
-set incsearch
-
-" A buffer becomes hidden when it is abandoned
-set hidden
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if has("syntax")
-  syntax on
-endif
-
-if &t_Co > 2 || has("gui_running")
-  syntax enable
-  set hlsearch
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files, backups
@@ -582,6 +597,18 @@ nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"To change the hunk-jumping maps (defaults shown):
+"  nmap [c <Plug>GitGutterPrevHunk
+"  nmap ]c <Plug>GitGutterNextHunk
+
+"To change the hunk-staging/undoing/previewing maps (defaults shown):
+"  nmap <Leader>hs <Plug>GitGutterStageHunk
+"  nmap <Leader>hu <Plug>GitGutterUndoHunk
+"  nmap <Leader>hp <Plug>GitGutterPreviewHunk
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2 " Always show the status line
@@ -620,3 +647,13 @@ let g:airline#extensions#whitespace#enabled = 0
 "    \ [ 'x', 'y', 'z', 'error', 'warning' ]
 "    \ ]
 "
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-virtualenv
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"TODO
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Python mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"TODO
