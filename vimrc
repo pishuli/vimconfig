@@ -127,6 +127,8 @@ else
     set background=dark
 endif
 
+"set background=light
+
 if &background == "light"
     let g:solarized_termcolors=256
     colorscheme solarized_my
@@ -612,7 +614,13 @@ vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 " Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2 " Always show the status line
-let g:airline_theme='molokai'
+
+if &background == "light"
+    let g:airline_theme='solarized'
+else
+    let g:airline_theme='molokai'
+endif
+
 let g:airline_powerline_fonts=1
 
 if !exists('g:airline_symbols')
