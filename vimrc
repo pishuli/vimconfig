@@ -19,6 +19,7 @@ Plugin 'Marks-Browser'
 Plugin 'tomasr/molokai'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mhinz/vim-grepper'
+Plugin 'brookhong/cscope.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/a.vim'
@@ -359,6 +360,29 @@ nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Cscove (cscope.vim)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
+
+" s: Find this C symbol
+nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+" g: Find this definition
+nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+" c: Find functions calling this function
+nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+" t: Find this text string
+nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+" e: Find this egrep pattern
+nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+" f: Find this file
+nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+" i: Find files #including this file
+nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " List all errors.
@@ -468,7 +492,6 @@ let g:ctrlp_custom_ignore = {
 nmap <leader>ff :CtrlP<CR>
 nmap <leader>fb :CtrlPBuffer<CR>
 nmap <leader>fr :CtrlPMRU<CR>
-nmap <leader>ft :CtrlPTag<CR>
 
 " mappings inside CtrlP's prompt,
 " see :help ctrlp_prompt_mappings
@@ -491,9 +514,6 @@ let g:grepper = {
 
 let g:grepper.git =
   \ { 'grepprg': 'git -C `git rev-parse --show-toplevel` grep -nI' }
-
-let g:grepper.grep =
-  \ { 'grepprg': 'grep -PRn $* .' } " Use Perl regular expression
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Taglist
