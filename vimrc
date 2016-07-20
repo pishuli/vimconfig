@@ -18,6 +18,7 @@ Plugin 'ShowMarks'
 Plugin 'Marks-Browser'
 Plugin 'tomasr/molokai'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mhinz/vim-grepper'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/a.vim'
@@ -466,9 +467,33 @@ let g:ctrlp_custom_ignore = {
 
 nmap <leader>ff :CtrlP<CR>
 nmap <leader>fb :CtrlPBuffer<CR>
+nmap <leader>fr :CtrlPMRU<CR>
+nmap <leader>ft :CtrlPTag<CR>
 
 " mappings inside CtrlP's prompt,
 " see :help ctrlp_prompt_mappings
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Grepper
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for browsing the input history
+cnoremap <c-n> <down>
+cnoremap <c-p> <up>
+
+nnoremap <leader>g :Grepper -tool git -cword<cr>
+nnoremap <leader>G :Grepper -tool ag -cword<cr>
+" see https://github.com/ggreer/the_silver_searcher for more about ag
+
+let g:grepper = {
+    \ 'tools': ['ag', 'git', 'grep'],
+    \ 'next_tool': '<leader>g',
+    \ }
+
+let g:grepper.git =
+  \ { 'grepprg': 'git -C `git rev-parse --show-toplevel` grep -nI' }
+
+let g:grepper.grep =
+  \ { 'grepprg': 'grep -PRn $* .' } " Use Perl regular expression
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Taglist
