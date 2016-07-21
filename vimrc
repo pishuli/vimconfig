@@ -19,7 +19,6 @@ Plugin 'Marks-Browser'
 Plugin 'tomasr/molokai'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mhinz/vim-grepper'
-Plugin 'brookhong/cscope.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/a.vim'
@@ -43,7 +42,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -343,44 +341,21 @@ if has("cscope")
 endif
 
 " 0 or s: Find this C symbol
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
 " 1 or g: Find this definition
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
 " 2 or d: Find functions called by this function
-nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 3 or c: Find functions calling this function
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
 " 4 or t: Find this text string
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
 " 6 or e: Find this egrep pattern
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 " 7 or f: Find this file
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " 8 or i: Find files #including this file
-nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Cscove (cscope.vim)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
-
-" s: Find this C symbol
-nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-" g: Find this definition
-nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-" d: Find functions called by this function
-nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
-" c: Find functions calling this function
-nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-" t: Find this text string
-nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-" e: Find this egrep pattern
-nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-" f: Find this file
-nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-" i: Find files #including this file
-nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix
@@ -474,8 +449,11 @@ nmap <leader>bc :ClearBookmarks<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ctrlp_map = '<c-p>' " Default
 "let g:ctrlp_cmd = 'CtrlP' " Default
+let g:ctrlp_map = '<leader>ff' " Default '<c-p>'
+nmap <leader>fb :CtrlPBuffer<CR>
+nmap <leader>fr :CtrlPMRU<CR>
+
 let g:ctrlp_user_command =
   \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 
@@ -488,10 +466,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
   \ }
-
-nmap <leader>ff :CtrlP<CR>
-nmap <leader>fb :CtrlPBuffer<CR>
-nmap <leader>fr :CtrlPMRU<CR>
 
 " mappings inside CtrlP's prompt,
 " see :help ctrlp_prompt_mappings
@@ -598,19 +572,6 @@ set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 " Trailing whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader><space> :FixWhitespace<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nerdcommenter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDSpaceDelims = 1
-" mappings:
-" <leader>cc
-"   Comment out the current line or text selected in visual mode.
-" <leader>cu
-"   Uncomments the selected line(s).
-" <Leader>|c<space>
-"   Toggles the comment state of the selected line(s). If the topmost selected
-"   line is commented, all selected lines are uncommented and vice versa.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-surround
