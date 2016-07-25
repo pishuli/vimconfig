@@ -2,8 +2,8 @@ My vim configuration backup
 
 Installation:
 $ cd
-$ git clone https://github.com/jarsonfang/vimconfig.git
 $ rm -rf .vim .vimrc
+$ git clone https://github.com/jarsonfang/vimconfig.git
 $ ln -s vimconfig/vim .vim
 $ ln -s vimconfig/vimrc .vimrc
 
