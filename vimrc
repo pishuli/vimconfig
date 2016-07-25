@@ -682,7 +682,20 @@ let g:airline#extensions#whitespace#enabled = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline-tmuxline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"TODO
+" #H    Hostname of local host
+" #h    Hostname of local host without the domain name
+" #F    Current window flag
+" #I    Current window index
+" #S    Session name
+" #W    Current window name
+" #(shell-command)  First line of the command's output
+let g:tmuxline_preset = {
+    \'a'       : '#S',
+    \'win'     : '#I #W',
+    \'cwin'    : '#I #W #F',
+    \'y'       : ['%a', '%R', '%Y-%m-%d'],
+    \'z'       : '#H',
+    \'options' : {'status-justify' : 'left'}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-virtualenv
