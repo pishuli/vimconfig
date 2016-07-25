@@ -31,6 +31,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
@@ -171,6 +172,9 @@ set softtabstop=4
 set lbr
 set tw=500
 set wrap "Wrap lines
+
+" Show tabs and trails
+set list listchars=tab:→·,trail:·
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files, backups
@@ -674,6 +678,11 @@ let g:airline#extensions#whitespace#enabled = 0
 "    \ [ 'x', 'y', 'z', 'error', 'warning' ]
 "    \ ]
 "
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline-tmuxline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"TODO
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-virtualenv
