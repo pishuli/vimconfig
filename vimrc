@@ -692,9 +692,9 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:tmuxline_preset = {
     \'a'       : '#S',
     \'win'     : '#I #W',
-    \'cwin'    : '#I #W #F',
-    \'y'       : ['%a', '%R', '%Y-%m-%d'],
-    \'z'       : '#H',
+    \'cwin'    : '#I #W',
+    \'y'       : '#(uptime|cut -d "," -f1|cut -d " " -f3,5) #(uptime |cut -d "," -f3,4,5|sed "s/^\ *//")',
+    \'z'       : '#(whoami)@#H',
     \'options' : {'status-justify' : 'left'}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
