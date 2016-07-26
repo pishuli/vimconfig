@@ -700,7 +700,7 @@ let g:tmuxline_preset = {
     \'a'       : '#S',
     \'win'     : '#I #W',
     \'cwin'    : '#I #W',
-    \'y'       : '#(uptime |cut -d "," -f3,4,5,6|sed "s/^\ *//")',
+    \'y'       : ['%a', '%Y-%m-%d %R', '#(uptime |cut -d "," -f3,4,5,6|sed "s/^\ *//")'],
     \'z'       : '#(whoami)@#H',
     \'options' : {'status-justify' : 'left'}}
 
