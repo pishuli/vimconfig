@@ -109,6 +109,11 @@ let g:mapleader = ","
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Syntax and colorscheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Workaround with tmux terminal
+if exists('$TMUX')
+  set term=screen-256color
+endif
+
 set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
 
 " Switch syntax highlighting on, when the terminal has colors
