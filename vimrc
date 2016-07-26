@@ -682,6 +682,8 @@ let g:airline#extensions#whitespace#enabled = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline-tmuxline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let airline#extensions#tmuxline#snapshot_file = "~/.tmux-statusline.conf"
+
 " #H    Hostname of local host
 " #h    Hostname of local host without the domain name
 " #F    Current window flag
