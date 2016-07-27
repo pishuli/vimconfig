@@ -428,12 +428,12 @@ nmap <leader>mk :MarksBrowser<CR>
 " Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Default Mappings, see :help easymotion-default-mappings for more
-"<leader><Leader>f{char}      " Find {char} to the right. See |f|.
 "<leader><Leader>w            " Beginning of word forward. See |w|.
 "<leader><Leader>b            " Beginning of word backward. See |b|.
 "<leader><Leader>j            " Line downward. See |j|.
 "<leader><Leader>k            " Line upward. See |k|.
 "<leader><Leader>s            " Find(Search) {char} forward and backward. See |f| and |F|.
+"<leader><Leader>f{char}      " Find {char} to the right. See |f|.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree
