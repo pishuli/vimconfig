@@ -248,10 +248,10 @@ map j gj
 map k gk
 
 " Smart way to move between windows
-map J <C-W>j
-map K <C-W>k
-map H <C-W>h
-map L <C-W>l
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
