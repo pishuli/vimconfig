@@ -43,6 +43,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'vivien/vim-linux-coding-style'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -626,6 +627,11 @@ vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 "  nmap <Leader>hs <Plug>GitGutterStageHunk
 "  nmap <Leader>hu <Plug>GitGutterUndoHunk
 "  nmap <Leader>hp <Plug>GitGutterPreviewHunk
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-linux-coding-style
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:linuxsty_patterns = [ "/usr/src/", "/linux" ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
