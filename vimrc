@@ -462,16 +462,24 @@ nmap <leader>bc :ClearBookmarks<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ctrlp_cmd = 'CtrlP' " Default
-let g:ctrlp_map = '<leader>ff' " Default '<c-p>'
+" :CtrlP Open CtrlP in file mode
+" :CtrlPBuffer Open CtrlP in find buffer mode
+" :CtrlPMRU Open CtrlP in find Most-Recently-Used file mode
+
+let g:ctrlp_map = '<leader>ff' " the mapping to invoke CtrlP in Normal mode, default is '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP' " the default opening command to use when pressing the above mapping
+
 nmap <leader>fb :CtrlPBuffer<CR>
 nmap <leader>fr :CtrlPMRU<CR>
 
-let g:ctrlp_user_command =
-  \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
-
-let g:ctrlp_switch_buffer = 'ET'
+let g:ctrlp_arg_map = 1
 let g:ctrlp_open_new_file = 't'
+
+let g:ctrlp_regexp = 1
+let g:ctrlp_by_filename = 1
+
+let g:ctrlp_user_command =
+  \ ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 let g:ctrlp_custom_ignore = {
@@ -674,6 +682,7 @@ let g:airline_mode_map = {
     \ }
 
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#ctrlp#show_adjacent_modes = 0
 
 "variable names                default contents
 "----------------------------------------------------------------------------
