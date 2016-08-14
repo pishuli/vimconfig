@@ -550,7 +550,7 @@ let g:ycm_rust_src_path = '/usr/local/src/rust/src'
 "let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_key_invoke_completion = '<C-Space>' " Default
-"let g:ycm_key_detailed_diagnostics = '<leader>d' "Default
+"let g:ycm_key_detailed_diagnostics = '<leader>d' " Default
 let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 
@@ -724,6 +724,13 @@ let g:tmuxline_preset = {
     \'y'       : ['%a', '%Y/%m/%d %R', 'load average: #(cat /proc/loadavg | cut -d " " -f1-3)'],
     \'z'       : '#(whoami)@#H',
     \'options' : {'status-justify' : 'left'}}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rust
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rust_fold = 1
+"let g:rustfmt_autosave = 1
+nmap <leader>r :RustRun<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-virtualenv
