@@ -280,7 +280,8 @@ nmap <leader>e :edit<Space>
 
 " Save file
 nmap <leader>w :w!<CR>
-nmap <leader>wq :wq<CR>
+nmap <leader>wa :wa!<CR>
+nmap <leader>wq :wq!<CR>
 
 " Quit window
 nmap <leader>q :q!<CR>
