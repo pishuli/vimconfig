@@ -245,7 +245,7 @@ augroup END
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+          \ | wincmd p | diffthis
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
