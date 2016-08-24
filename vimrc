@@ -164,6 +164,9 @@ set showcmd
 " Height of the command bar
 set cmdheight=2
 
+" Highlight the cursor line
+set cursorline
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
