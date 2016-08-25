@@ -268,6 +268,7 @@ map Q gq
 "map 0 ^
 
 " Useful mappings for managing tabs
+nmap <leader>ta :tabnew<CR>
 nmap <leader>tn :tabnext<CR>
 nmap <leader>tp :tabprevious<CR>
 nmap <leader>to :tabonly<CR>
