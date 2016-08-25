@@ -434,7 +434,7 @@ nmap <leader>mc :ShowMarksClearMark<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Markbrowser
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>mk :MarksBrowser<CR>
+nmap <leader>mb :MarksBrowser<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easymotion
