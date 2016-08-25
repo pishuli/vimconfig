@@ -393,7 +393,9 @@ nmap <leader>cw :cw 10<CR>
 " Close the quickfix window
 nmap <leader>cq :cclose<CR>
 " Go to older error list
-nmap <leader>co :col<CR>
+nmap <leader>co :colder<CR>
+" Go to newer error list
+nmap <leader>ca :cnewer<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Alternate Files quickly (a.vim)
