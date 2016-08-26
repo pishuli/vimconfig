@@ -167,7 +167,7 @@ set cmdheight=2
 set cursorline
 
 " Set borderline (or reference line)
-set colorcolumn=100 " or set cc=80, use set cc= to unset the option
+set colorcolumn=81 " or set cc=81, use set cc= to unset the option
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
