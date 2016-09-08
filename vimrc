@@ -45,6 +45,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
+Plugin 'elzr/vim-json'
+Plugin 'plasticboy/vim-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -740,6 +743,46 @@ let g:tmuxline_preset = {
 let g:rust_fold = 1
 "let g:rustfmt_autosave = 1
 nmap <leader>r :RustRun<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set conceallevel=2
+"let g:vim_markdown_conceal = 0
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_level = 6
+
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_new_list_item_indent = 2
+
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+
+"let g:vim_markdown_emphasis_multiline = 0
+"let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']
+
+" Mappings
+" - 'gx': open the link under the cursor in browser. '<Plug>Markdown_OpenUrlUnderCursor'
+" - 'ge': open the link under the cursor in Vim for editing. Useful for
+"   relative markdown links. '<Plug>Markdown_EditUrlUnderCursor'
+" - ']]': go to next header. '<Plug>Markdown_MoveToNextHeader'
+" - '[[': go to previous header. '<Plug>Markdown_MoveToPreviousHeader'
+" - '][': go to next sibling header if any. '<Plug>Markdown_MoveToNextSiblingHeader'
+" - '[]': go to previous sibling header if any. '<Plug>Markdown_MoveToPreviousSiblingHeader'
+" - ']c': go to Current header. '<Plug>Markdown_MoveToCurHeader'
+" - ']u': go to parent header (Up). '<Plug>Markdown_MoveToParentHeader'
+
+" Commands
+" - ':TableFormat': Format the table under the cursor
+" - ':Toc': create a quickfix vertical window navigable table of contents with the headers.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-json
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:vim_json_syntax_conceal = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-virtualenv
