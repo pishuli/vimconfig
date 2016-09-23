@@ -48,6 +48,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -778,6 +779,11 @@ let g:vim_markdown_json_frontmatter = 1
 " Commands
 " - ':TableFormat': Format the table under the cursor
 " - ':Toc': create a quickfix vertical window navigable table of contents with the headers.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-instant-markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:instant_markdown_slow = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-json
