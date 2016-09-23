@@ -108,7 +108,7 @@ if has('mouse')
 endif
 
 " With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
+" like <Leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
@@ -272,39 +272,39 @@ map Q gq
 "map 0 ^
 
 " Useful mappings for managing tabs
-nmap <leader>ta :tabnew<CR>
-nmap <leader>tn :tabnext<CR>
-nmap <leader>tp :tabprevious<CR>
-nmap <leader>to :tabonly<CR>
-nmap <leader>tc :tabclose<CR>
+nmap <Leader>ta :tabnew<CR>
+nmap <Leader>tn :tabnext<CR>
+nmap <Leader>tp :tabprevious<CR>
+nmap <Leader>to :tabonly<CR>
+nmap <Leader>tc :tabclose<CR>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-nmap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
+nmap <Leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 
 " Switch CWD to the directory of the open buffer
-nmap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nmap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Edit file
-nmap <leader>e :edit<Space>
+nmap <Leader>e :edit<Space>
 
 " Save file
-nmap <leader>w :w!<CR>
-nmap <leader>wa :wa!<CR>
-nmap <leader>wq :wq!<CR>
+nmap <Leader>w :w!<CR>
+nmap <Leader>wa :wa!<CR>
+nmap <Leader>wq :wq!<CR>
 
 " Quit window
-nmap <leader>q :q!<CR>
-nmap <leader>qa :qa!<CR>
+nmap <Leader>q :q!<CR>
+nmap <Leader>qa :qa!<CR>
 
 " Split window
-nmap <leader>sp :split<CR>
+nmap <Leader>sp :split<CR>
 
 " Split window vertical
-nmap <leader>vs :vsplit<CR>
+nmap <Leader>vs :vsplit<CR>
 
 " Toggle paste mode on and off
-nmap <leader>p :setlocal paste!<CR>
+nmap <Leader>p :setlocal paste!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast edit vimrc
@@ -336,16 +336,16 @@ function! SwitchToBuf(filename)
 endfunction
 
 "Fast reloading of the .vimrc
-nmap <leader>sv :source ~/.vimrc<CR>
+nmap <Leader>sv :source ~/.vimrc<CR>
 
 "Fast editing of .vimrc
-nmap <leader>ev :call SwitchToBuf("~/.vimrc")<CR>
+nmap <Leader>ev :call SwitchToBuf("~/.vimrc")<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Man page
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source $VIMRUNTIME/ftplugin/man.vim
-nmap <leader>m :Man<Space>
+nmap <Leader>m :Man<Space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cscope
@@ -367,51 +367,51 @@ if has("cscope")
 endif
 
 " 0 or s: Find this C symbol
-nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
 " 1 or g: Find this definition
-nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
 " 2 or d: Find functions called by this function
-nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 3 or c: Find functions calling this function
-nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
 " 4 or t: Find this text string
-nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
 " 6 or e: Find this egrep pattern
-nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 " 7 or f: Find this file
-"nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <Leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " 8 or i: Find files #including this file
-nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <Leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " List all errors.
-nmap <leader>cl :clist!<CR>
+nmap <Leader>cl :clist!<CR>
 " Display the next error in the list
-nmap <leader>cn :cnext<CR>
+nmap <Leader>cn :cnext<CR>
 " Display the previous error in the list
-nmap <leader>cp :cprevious<CR>
+nmap <Leader>cp :cprevious<CR>
 " Open the quickfix window when there are recognized errors
-nmap <leader>cw :cw 10<CR>
+nmap <Leader>cw :cw 10<CR>
 " Close the quickfix window
-nmap <leader>cq :cclose<CR>
+nmap <Leader>cq :cclose<CR>
 " Go to older error list
-nmap <leader>co :colder<CR>
+nmap <Leader>co :colder<CR>
 " Go to newer error list
-nmap <leader>ca :cnewer<CR>
+nmap <Leader>ca :cnewer<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Alternate Files quickly (a.vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " :A switches to the header file corresponding to the current file being edited (or vise versa)
-nmap <leader>a :A<cr>
+nmap <Leader>a :A<cr>
 " :AS splits and switches
-nmap <leader>as :AS<cr>
+nmap <Leader>as :AS<cr>
 " :AV vertical splits and switches
-nmap <leader>av :AV<cr>
+nmap <Leader>av :AV<cr>
 " :AT new tab and switches
-nmap <leader>at :AT<cr>
+nmap <Leader>at :AT<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Showmarks
@@ -433,40 +433,40 @@ let showmarks_hlline_upper = 1
 "  <Leader>mt   - Toggles ShowMarks on and off.
 "  <Leader>ma   - Clears all marks in the current buffer.
 "  <Leader>mm   - Places the next available mark on the current lineo
-nmap <leader>mc :ShowMarksClearMark<CR>
+nmap <Leader>mc :ShowMarksClearMark<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Markbrowser
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>mb :MarksBrowser<CR>
+nmap <Leader>mb :MarksBrowser<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Default Mappings, see :help easymotion-default-mappings for more
-"<leader><Leader>w            " Beginning of word forward. See |w|.
-"<leader><Leader>b            " Beginning of word backward. See |b|.
-"<leader><Leader>j            " Line downward. See |j|.
-"<leader><Leader>k            " Line upward. See |k|.
-"<leader><Leader>s            " Find(Search) {char} forward and backward. See |f| and |F|.
-"<leader><Leader>f{char}      " Find {char} to the right. See |f|.
+"<Leader><Leader>w            " Beginning of word forward. See |w|.
+"<Leader><Leader>b            " Beginning of word backward. See |b|.
+"<Leader><Leader>j            " Line downward. See |j|.
+"<Leader><Leader>k            " Line upward. See |k|.
+"<Leader><Leader>s            " Find(Search) {char} forward and backward. See |f| and |F|.
+"<Leader><Leader>f{char}      " Find {char} to the right. See |f|.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global commands
 " :NERDTree [<start-directory> | <bookmark>], help :NERDTree to see more detail
-nmap <leader>n :NERDTree<Space>
-nmap <leader>nt :NERDTreeToggle<CR>
+nmap <Leader>n :NERDTree<Space>
+nmap <Leader>nt :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\~$', '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 
 " Bookmark commands
 " Note that the following commands are only available in the NERD tree buffer.
 " :Bookmark [<name>], bookmark the current node as <name>, help :Bookmark to see more detail
-nmap <leader>b :Bookmark<Space>
+nmap <Leader>b :Bookmark<Space>
 " :ClearBookmarks [<bookmarks>], Remove all the given bookmarks. If no bookmarks are given then remove all bookmarks on the current node.
-nmap <leader>bc :ClearBookmarks<Space>
+nmap <Leader>bc :ClearBookmarks<Space>
 
 " Mappings
 " I.......Toggle whether hidden files displayed....................|NERDTree-I|
@@ -481,11 +481,11 @@ nmap <leader>bc :ClearBookmarks<Space>
 " :CtrlPBuffer Open CtrlP in find buffer mode
 " :CtrlPMRU Open CtrlP in find Most-Recently-Used file mode
 
-let g:ctrlp_map = '<leader>ff' " the mapping to invoke CtrlP in Normal mode, default is '<c-p>'
+let g:ctrlp_map = '<Leader>ff' " the mapping to invoke CtrlP in Normal mode, default is '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP' " the default opening command to use when pressing the above mapping
 
-nmap <leader>fb :CtrlPBuffer<CR>
-nmap <leader>fr :CtrlPMRU<CR>
+nmap <Leader>fb :CtrlPBuffer<CR>
+nmap <Leader>fr :CtrlPMRU<CR>
 
 let g:ctrlp_arg_map = 1
 let g:ctrlp_open_new_file = 't'
@@ -513,13 +513,13 @@ let g:ctrlp_custom_ignore = {
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 
-nnoremap <leader>g :Grepper -tool git -cword<cr>
-nnoremap <leader>G :Grepper -tool ag -cword<cr>
+nnoremap <Leader>g :Grepper -tool git -cword<cr>
+nnoremap <Leader>G :Grepper -tool ag -cword<cr>
 " see https://github.com/ggreer/the_silver_searcher for more about ag
 
 let g:grepper = {
     \ 'tools': ['ag', 'git', 'grep'],
-    \ 'next_tool': '<leader>g',
+    \ 'next_tool': '<Leader>g',
     \ }
 
 let g:grepper.git =
@@ -534,18 +534,18 @@ let Tlist_Use_Right_Window = 1
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 
 " Toggle tag list on and off
-nmap <leader>tl :TlistToggle<CR>
+nmap <Leader>tl :TlistToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_autofocus = 1
-nmap <leader>tb :TagbarToggle<CR>
+nmap <Leader>tb :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Task list
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>td <Plug>TaskList
+nmap <Leader>td <Plug>TaskList
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SuperTab
@@ -563,15 +563,15 @@ let g:ycm_rust_src_path = '/usr/local/src/rust/src'
 "let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_key_invoke_completion = '<C-Space>' " Default
-"let g:ycm_key_detailed_diagnostics = '<leader>d' " Default
+"let g:ycm_key_detailed_diagnostics = '<Leader>d' " Default
 let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 
 let g:ycm_confirm_extra_conf=0
 let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/.ycm_extra_conf.py'
 
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
+nnoremap <Leader>gd :YcmCompleter GoTo<CR>
+nnoremap <Leader>gi :YcmCompleter GoToInclude<CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -599,16 +599,16 @@ let g:syntastic_enable_balloons = 1 "whether to show balloons
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sessionman
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>sl :SessionList<CR>
-nmap <leader>ss :SessionSave<CR>
-nmap <leader>sc :SessionClose<CR>
+nmap <Leader>sl :SessionList<CR>
+nmap <Leader>ss :SessionSave<CR>
+nmap <Leader>sc :SessionClose<CR>
 
 set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trailing whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader><space> :FixWhitespace<CR>
+map <Leader><space> :FixWhitespace<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-surround
@@ -743,7 +743,7 @@ let g:tmuxline_preset = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rust_fold = 1
 "let g:rustfmt_autosave = 1
-nmap <leader>r :RustRun<CR>
+nmap <Leader>r :RustRun<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-markdown
