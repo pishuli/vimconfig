@@ -31,7 +31,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -443,13 +443,33 @@ nmap <Leader>mb :MarksBrowser<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Default Mappings, see :help easymotion-default-mappings for more
-"<Leader><Leader>w            " Beginning of word forward. See |w|.
-"<Leader><Leader>b            " Beginning of word backward. See |b|.
-"<Leader><Leader>j            " Line downward. See |j|.
-"<Leader><Leader>k            " Line upward. See |k|.
-"<Leader><Leader>s            " Find(Search) {char} forward and backward. See |f| and |F|.
-"<Leader><Leader>f{char}      " Find {char} to the right. See |f|.
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1 " Turn on case insensitive feature
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+"nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Jump to anywhere before the {char}{char}
+" `t{char}{char}{label}`
+map t <Plug>(easymotion-bd-t2)
+
+" n-character search motion
+map / <Plug>(easymotion-sn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map n <Plug>(easymotion-next)
+map N <Plug>(easymotion-prev)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree
