@@ -225,9 +225,13 @@ autocmd FileType text setlocal textwidth=78
 " For all text files load abbreviation settings
 autocmd Filetype text source ~/.vim/scripts/abbrevs.vim
 
+" Settins below: 'et' for expandtab, 'sta' for smarttab, 'sw' for shiftwidth, 'sts' for softtabstop
+
 " For python files tab & indent
-" 'et' for expandtab, 'sta' for smarttab, 'sw' for shiftwidth, 'sts' for softtabstop
 autocmd FileType python setlocal et sta sw=4 sts=4
+
+" For markdown files tab & indent
+autocmd FileType markdown setlocal et sta sw=4 sts=4
 
 " load skel.c for C source files
 " autocmd BufNewFile *.[ch] 0read ~/.vim/scripts/skel.c
@@ -452,15 +456,18 @@ map <Leader>k <Plug>(easymotion-k)
 
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
-"nmap s <Plug>(easymotion-overwin-f)
+nmap s <Plug>(easymotion-overwin-f)
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-overwin-f2)
+"nmap s <Plug>(easymotion-overwin-f2)
 
-" Jump to anywhere before the {char}{char}
+" Jump to anywhere till before {char}
+" `t{char}{label}`
+map t <Plug>(easymotion-bd-t)
+" or {char}{char}
 " `t{char}{char}{label}`
-map t <Plug>(easymotion-bd-t2)
+"map t <Plug>(easymotion-bd-t2)
 
 " n-character search motion
 map / <Plug>(easymotion-sn)
