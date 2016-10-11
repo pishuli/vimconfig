@@ -584,8 +584,8 @@ let g:SuperTabDefaultCompletionType = '<C-TAB>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=longest,menu
 
-let g:ycm_python_binary_path = 'python'
 let g:ycm_rust_src_path = '/usr/local/src/rust/src'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 
 "let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
