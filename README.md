@@ -35,6 +35,12 @@ $ cd fonts && ./install.sh
 
 after powerline fonts installed, configure the terminal to use one of the powerline fonts.
 
+## Install dependency for `mhinz/vim-grepper`
+
+```bash
+$ sudo apt-get install silversearcher-ag
+```
+
 ## Install dependencies for `suan/vim-instant-markdown`
 
 ```bash
