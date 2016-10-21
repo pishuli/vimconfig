@@ -577,7 +577,8 @@ nmap <Leader>td <Plug>TaskList
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SuperTab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:SuperTabDefaultCompletionType = '<C-TAB>'
+" make YCM compatible with Ultisnips
+let g:SuperTabDefaultCompletionType = '<C-N>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
@@ -591,8 +592,8 @@ let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_key_invoke_completion = '<C-Space>' " Default
 "let g:ycm_key_detailed_diagnostics = '<Leader>d' " Default
-let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-N>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-P>', '<Up>']
 
 let g:ycm_confirm_extra_conf=0
 let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/.ycm_extra_conf.py'
