@@ -615,7 +615,7 @@ let g:UltiSnipsSnippetDirectories=["~/.vim/snippets", "~/.vim/bundle/vim-snippet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_error_symbol = '✗>'
 let g:syntastic_warning_symbol = '*>'
-let g:syntastic_python_checkers=['pyflakes']
+let g:syntastic_python_checkers=['pyflakes', 'pep8']
 
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
@@ -767,13 +767,6 @@ let g:tmuxline_preset = {
     \'options' : {'status-justify' : 'left'}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" rust
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rust_fold = 1
-"let g:rustfmt_autosave = 1
-nmap <Leader>r :RustRun<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set conceallevel=2
@@ -831,4 +824,61 @@ map <Leader>md :InstantMarkdownPreview<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"TODO
+let g:pymode_folding = 0
+let g:pymode_lint_signs = 0
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 10
+"let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+
+let g:pymode_rope = 0
+let g:pymode_virtualenv = 0
+
+"                                                               *pymode-motion*
+"
+" Support Vim motion for python objects (such as functions,
+" class and methods).
+"
+" C — means class
+" M — means method or function
+"                                                          *pymode-motion-keys*
+"
+" ====  ============================
+" Key   Command
+" ====  ============================
+" [[    Jump to previous class or function (normal, visual, operator modes)
+" ]]    Jump to next class or function  (normal, visual, operator modes)
+" [M    Jump to previous class or method (normal, visual, operator modes)
+" ]M    Jump to next class or method (normal, visual, operator modes)
+" aC    Select a class. Ex: vaC, daC, yaC, caC (normal, operator modes)
+" iC    Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
+" aM    Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
+" iM    Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
+" ====  ============================
+
+"                                                        *pymode-documentation*
+"
+" Pymode could show documentation for current word by pydoc.
+"
+" Commands:
+" :PymodeDoc <args> — show documentation
+"
+" Bind keys to show documentation for current word (selection)
+" let g:pymode_doc_bind = 'K'
+
+"                                                                  *pymode-run*
+"
+" Commands:
+" :PymodeRun -- Run current buffer or selection
+"
+" Turn on the run code script                                    *g:pymode_run*
+" let g:pymode_run = 1
+"
+" Binds keys to run python code                             *g:pymode_run_bind*
+" let g:pymode_run_bind = '<leader>r'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rust
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rust_fold = 1
+"let g:rustfmt_autosave = 1
+"nmap <Leader>r :RustRun<CR>
