@@ -19,36 +19,34 @@ Plugin 'Marks-Browser'
 Plugin 'tomasr/molokai'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mhinz/vim-grepper'
+Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/a.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'vim-scripts/sessionman.vim'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
-Plugin 'rdnetto/YCM-Generator'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'klen/python-mode'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'rust-lang/rust.vim'
-Plugin 'cespare/vim-toml'
-Plugin 'elzr/vim-json'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
+Plugin 'elzr/vim-json'
+Plugin 'cespare/vim-toml'
+Plugin 'klen/python-mode'
+Plugin 'rust-lang/rust.vim'
+Plugin 'tpope/vim-repeat'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-surround'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -588,7 +586,7 @@ set completeopt=longest,menu
 let g:ycm_rust_src_path = '/usr/local/src/rust/src'
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 
-"let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:ycm_key_invoke_completion = '<C-Space>' " Default
 "let g:ycm_key_detailed_diagnostics = '<Leader>d' " Default
@@ -817,31 +815,27 @@ map <Leader>md :InstantMarkdownPreview<CR>
 "let g:vim_json_syntax_conceal = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-virtualenv
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"TODO
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pymode_folding = 0
-let g:pymode_lint_signs = 0
-let g:pymode_quickfix_minheight = 3
-let g:pymode_quickfix_maxheight = 10
-"let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
-
+" Common functionality
+" --------------------
+let g:pymode_run = 0
 let g:pymode_rope = 0
+let g:pymode_folding = 0
 let g:pymode_virtualenv = 0
+let g:pymode_breakpoint = 0
+let g:pymode_options_colorcolumn = 0
+
+let g:pymode_quickfix_minheight = 5
+let g:pymode_quickfix_maxheight = 10
 
 "                                                               *pymode-motion*
-"
 " Support Vim motion for python objects (such as functions,
 " class and methods).
 "
 " C — means class
 " M — means method or function
 "                                                          *pymode-motion-keys*
-"
 " ====  ============================
 " Key   Command
 " ====  ============================
@@ -856,7 +850,6 @@ let g:pymode_virtualenv = 0
 " ====  ============================
 
 "                                                        *pymode-documentation*
-"
 " Pymode could show documentation for current word by pydoc.
 "
 " Commands:
@@ -865,20 +858,9 @@ let g:pymode_virtualenv = 0
 " Bind keys to show documentation for current word (selection)
 " let g:pymode_doc_bind = 'K'
 
-"                                                                  *pymode-run*
-"
-" Commands:
-" :PymodeRun -- Run current buffer or selection
-"
-" Turn on the run code script                                    *g:pymode_run*
-" let g:pymode_run = 1
-"
-" Binds keys to run python code                             *g:pymode_run_bind*
-" let g:pymode_run_bind = '<leader>r'
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rust
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rust_fold = 1
+"let g:rust_fold = 1
 "let g:rustfmt_autosave = 1
 "nmap <Leader>r :RustRun<CR>
