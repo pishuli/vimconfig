@@ -824,6 +824,7 @@ let g:pymode_rope = 0
 let g:pymode_folding = 0
 let g:pymode_virtualenv = 0
 let g:pymode_breakpoint = 0
+let g:pymode_lint_signs = 0
 let g:pymode_options_colorcolumn = 0
 
 let g:pymode_quickfix_minheight = 5
