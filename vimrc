@@ -825,6 +825,17 @@ let g:pymode_options_colorcolumn = 0
 let g:pymode_quickfix_minheight = 5
 let g:pymode_quickfix_maxheight = 10
 
+"                                                       *pymode-python-version*
+" By default pymode looks for current python version supported in your Vim.
+" You could choose prefer version, but value will be tested on loading.
+"
+"let g:pymode_python = 'python'
+"
+" Values are `python`, `python3`, `disable`. If value set to `disable` most
+" python-features of **pymode** will be disabled.
+"
+" Set value to `python3` if you are working with python3 projects.
+
 "                                                               *pymode-motion*
 " Support Vim motion for python objects (such as functions,
 " class and methods).
@@ -848,7 +859,6 @@ let g:pymode_quickfix_maxheight = 10
 "                                                        *pymode-documentation*
 " Pymode could show documentation for current word by pydoc.
 "
-" Commands:
 " :PymodeDoc <args> — show documentation
 "
 " Bind keys to show documentation for current word (selection)
