@@ -826,6 +826,7 @@ let g:pymode_options_colorcolumn = 0
 let g:pymode_quickfix_minheight = 5
 let g:pymode_quickfix_maxheight = 10
 
+let g:pymode_options_colorcolumn = 1
 let g:pymode_options_max_line_length = 99
 
 "                                                       *pymode-python-version*
