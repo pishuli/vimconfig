@@ -262,6 +262,12 @@ endif
 map j gj
 map k gk
 
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" Remap VIM 0 to first non-blank character
+"map 0 ^
+
 " Smart way to move between windows
 "map <C-h> <C-W>h
 "map <C-j> <C-W>j
@@ -273,12 +279,6 @@ map <C-h> <C-W><
 map <C-j> <C-W>+
 map <C-k> <C-W>-
 map <C-l> <C-W>>
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" Remap VIM 0 to first non-blank character
-"map 0 ^
 
 " Useful mappings for managing tabs
 nmap <Leader>ta :tabnew<CR>
