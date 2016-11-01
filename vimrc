@@ -496,9 +496,7 @@ let NERDTreeIgnore=[ '\~$', '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.eg
 " Bookmark commands
 " Note that the following commands are only available in the NERD tree buffer.
 " :Bookmark [<name>], bookmark the current node as <name>, help :Bookmark to see more detail
-nmap <Leader>b :Bookmark<Space>
 " :ClearBookmarks [<bookmarks>], Remove all the given bookmarks. If no bookmarks are given then remove all bookmarks on the current node.
-nmap <Leader>bc :ClearBookmarks<Space>
 
 " Mappings
 " I.......Toggle whether hidden files displayed....................|NERDTree-I|
@@ -724,6 +722,28 @@ let g:airline_mode_map = {
     \ 'S'  : 'S',
     \ '' : 'S',
     \ }
+
+let g:airline#extensions#tabline#enabled = 1
+
+"let g:airline#extensions#tabline#tab_nr_type = 0 " # of splits (default)
+"let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
+
+" Buffer navigation
+nmap <Leader>ls :ls<CR>
+nmap <Leader>b :buffer<Space>
+" the :ls command is the same as :buffers
+let g:airline#extensions#tabline#show_buffers = 0
+
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#ctrlp#show_adjacent_modes = 0
