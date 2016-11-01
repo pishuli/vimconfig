@@ -263,10 +263,16 @@ map j gj
 map k gk
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+"map <C-h> <C-W>h
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
+"map <C-l> <C-W>l
+
+" Smart way to resize windows
+map <C-h> <C-W><
+map <C-j> <C-W>+
+map <C-k> <C-W>-
+map <C-l> <C-W>>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
