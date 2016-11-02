@@ -898,6 +898,12 @@ let g:pymode_options_max_line_length = 99
 " Bind keys to show documentation for current word (selection)
 " let g:pymode_doc_bind = 'K'
 
+" Default code checkers (you could set several)         *'g:pymode_lint_checkers'*
+"
+" let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+"
+" Values may be chosen from: `pylint`, `pep8`, `mccabe`, `pep257`, `pyflakes`.
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rust
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
