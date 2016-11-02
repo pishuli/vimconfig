@@ -39,7 +39,6 @@ Plugin 'cespare/vim-toml'
 Plugin 'klen/python-mode'
 Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-repeat'
-Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-fugitive'
@@ -658,18 +657,6 @@ map <Leader><space> :FixWhitespace<CR>
 "  S   - in visual mode, add a surrounding but place text on new line + indent it
 "
 " see :help surround for more
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tabular for aligning text
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:<CR>
-vmap <Leader>a: :Tabularize /:<CR>
-nmap <Leader>a:: :Tabularize /:\zs<CR>
-vmap <Leader>a:: :Tabularize /:\zs<CR>
-nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
