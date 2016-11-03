@@ -314,6 +314,14 @@ nmap <Leader>vs :vsplit<CR>
 " Toggle paste mode on and off
 nmap <Leader>p :setlocal paste!<CR>
 
+" Buffer operations
+nmap <Leader>ls :ls<CR>
+" the :ls command is the same as :buffers
+nmap <Leader>b  :buffer<Space>
+nmap <Leader>bd :bdelete<Space>
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprevious<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast edit vimrc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -722,13 +730,6 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:airline#extensions#tabline#tab_nr_type = 0 " # of splits (default)
 "let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
-
-" Buffer navigation
-nmap <Leader>ls :ls<CR>
-nmap <Leader>b :buffer<Space>
-" the :ls command is the same as :buffers
-nnoremap <C-N> :bnext<CR>
-nnoremap <C-P> :bprevious<CR>
 
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
