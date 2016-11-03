@@ -600,8 +600,10 @@ let g:ycm_key_list_previous_completion = ['<C-P>', '<Up>']
 let g:ycm_confirm_extra_conf=0
 let g:ycm_global_ycm_extra_conf = '~/.vim/scripts/.ycm_extra_conf.py'
 
-nnoremap <Leader>gd :YcmCompleter GoTo<CR>
+nnoremap <Leader>gt :YcmCompleter GoTo<CR>
+nnoremap <Leader>gd :YcmCompleter GetDoc<CR>
 nnoremap <Leader>gi :YcmCompleter GoToInclude<CR>
+nnoremap <Leader>gr :YcmCompleter GoToReferences<CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
