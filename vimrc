@@ -22,7 +22,6 @@ Plugin 'mhinz/vim-grepper'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'easymotion/vim-easymotion'
@@ -563,21 +562,11 @@ let g:grepper.git =
   \ { 'grepprg': 'git -C `git rev-parse --show-toplevel` grep -nI' }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Taglist
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-
-" Toggle tag list on and off
-nmap <Leader>tl :TlistToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_autofocus = 1
 nmap <Leader>tb :TagbarToggle<CR>
+nmap <Leader>tl :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Task list
