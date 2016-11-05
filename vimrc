@@ -420,13 +420,13 @@ nmap <Leader>ca :cnewer<CR>
 " Alternate Files quickly (a.vim)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " :A switches to the header file corresponding to the current file being edited (or vise versa)
-nmap <Leader>a :A<cr>
+nmap <Leader>a :A<CR>
 " :AS splits and switches
-nmap <Leader>as :AS<cr>
+nmap <Leader>as :AS<CR>
 " :AV vertical splits and switches
-nmap <Leader>av :AV<cr>
+nmap <Leader>av :AV<CR>
 " :AT new tab and switches
-nmap <Leader>at :AT<cr>
+nmap <Leader>at :AT<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Showmarks
@@ -517,7 +517,7 @@ let NERDTreeIgnore=[ '\~$', '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.eg
 " :CtrlPBuffer Open CtrlP in find buffer mode
 " :CtrlPMRU Open CtrlP in find Most-Recently-Used file mode
 
-let g:ctrlp_map = '<Leader>ff' " the mapping to invoke CtrlP in Normal mode, default is '<c-p>'
+let g:ctrlp_map = '<Leader>ff' " the mapping to invoke CtrlP in Normal mode, default is '<C-P>'
 "let g:ctrlp_cmd = 'CtrlP' " the default opening command to use when pressing the above mapping
 
 nmap <Leader>fb :CtrlPBuffer<CR>
@@ -546,11 +546,11 @@ let g:ctrlp_custom_ignore = {
 " Grepper
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for browsing the input history
-cnoremap <c-n> <down>
-cnoremap <c-p> <up>
+cnoremap <C-N> <Down>
+cnoremap <C-P> <Up>
 
-nnoremap <Leader>g :Grepper -tool git -cword<cr>
-nnoremap <Leader>G :Grepper -tool ag -cword<cr>
+nnoremap <Leader>g :Grepper -tool git -cword<CR>
+nnoremap <Leader>G :Grepper -tool ag -cword<CR>
 " see https://github.com/ggreer/the_silver_searcher for more about ag
 
 let g:grepper = {
