@@ -523,11 +523,8 @@ let g:ctrlp_map = '<Leader>ff' " the mapping to invoke CtrlP in Normal mode, def
 nmap <Leader>fb :CtrlPBuffer<CR>
 nmap <Leader>fr :CtrlPMRU<CR>
 
-let g:ctrlp_arg_map = 1
-let g:ctrlp_open_new_file = 't'
-
 let g:ctrlp_regexp = 1
-let g:ctrlp_by_filename = 1
+let g:ctrlp_arg_map = 1
 
 let g:ctrlp_user_command =
   \ ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
@@ -539,8 +536,39 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
   \ }
 
-" mappings inside CtrlP's prompt,
-" see :help ctrlp_prompt_mappings
+" mappings inside CtrlP's prompt, see :help ctrlp_prompt_mappings
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtBS()':              ['<bs>'],
+  \ 'PrtDelete()':          ['<del>'],
+  \ 'PrtDeleteWord()':      ['<c-w>'],
+  \ 'PrtClear()':           ['<c-u>'],
+  \ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
+  \ 'PrtSelectMove("t")':   ['<Home>'],
+  \ 'PrtSelectMove("b")':   ['<End>'],
+  \ 'PrtSelectMove("u")':   ['<PageUp>'],
+  \ 'PrtSelectMove("d")':   ['<PageDown>'],
+  \ 'PrtHistory(-1)':       ['<c-n>'],
+  \ 'PrtHistory(1)':        ['<c-p>'],
+  \ 'AcceptSelection("e")': ['<cr>'],
+  \ 'AcceptSelection("h")': ['<c-x>'],
+  \ 'AcceptSelection("t")': ['<c-t>'],
+  \ 'AcceptSelection("v")': ['<c-v>'],
+  \ 'ToggleFocus()':        ['<s-tab>'],
+  \ 'ToggleRegex()':        ['<c-r>'],
+  \ 'ToggleByFname()':      ['<c-d>'],
+  \ 'ToggleType(1)':        ['<c-f>'],
+  \ 'ToggleType(-1)':        ['<c-b>'],
+  \ 'PrtCurStart()':        ['<c-a>'],
+  \ 'PrtCurEnd()':          ['<c-e>'],
+  \ 'PrtCurLeft()':         ['<left>'],
+  \ 'PrtCurRight()':        ['<right>'],
+  \ 'PrtClearCache()':      ['<F5>'],
+  \ 'CreateNewFile()':      ['<c-y>'],
+  \ 'MarkToOpen()':         ['<c-z>'],
+  \ 'OpenMulti()':          ['<c-o>'],
+  \ 'PrtExit()':            ['<esc>'],
+  \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Grepper
