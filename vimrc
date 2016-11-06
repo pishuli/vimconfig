@@ -25,6 +25,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'Yggdroot/indentLine'
 Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -488,6 +490,14 @@ map / <Plug>(easymotion-sn)
 " different highlight method and have some other features )
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indentLine
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indentLine_setConceal = 0
+let g:indentLine_leadingSpaceChar = '·'
+"let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_fileType = ['python', 'json']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree
