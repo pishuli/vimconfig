@@ -35,14 +35,14 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'elzr/vim-json'
+Plugin 'klen/python-mode'
 Plugin 'stephpy/vim-yaml'
 Plugin 'cespare/vim-toml'
-Plugin 'klen/python-mode'
-Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'rust-lang/rust.vim'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -850,11 +850,6 @@ let g:instant_markdown_autostart = 0
 " manually trigger preview via the command :InstantMarkdownPreview.
 " the command is only available inside markdown buffers and when the autostart option is turned off.
 map <Leader>md :InstantMarkdownPreview<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-json
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:vim_json_syntax_conceal = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python mode
