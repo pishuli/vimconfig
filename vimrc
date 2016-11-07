@@ -132,6 +132,8 @@ if &t_Co > 2 || has("gui_running")
 "  set hlsearch
 endif
 
+set conceallevel=2
+
 if has('gui_running')
     set background=light
 else
@@ -494,10 +496,10 @@ map N <Plug>(easymotion-prev)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indentLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indentLine_setConceal = 0
+let g:indentLine_concealcursor = ''
 let g:indentLine_leadingSpaceChar = '·'
 "let g:indentLine_leadingSpaceEnabled = 1
-let g:indentLine_fileType = ['python', 'json']
+"let g:indentLine_fileType = ['python']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree
@@ -810,9 +812,6 @@ let g:tmuxline_preset = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set conceallevel=2
-"let g:vim_markdown_conceal = 0
-
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_folding_level = 6
 
