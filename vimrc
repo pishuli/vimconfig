@@ -604,6 +604,7 @@ let g:grepper.git =
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tagbar_sort = 0
 let g:tagbar_autofocus = 1
 nmap <Leader>tb :TagbarToggle<CR>
 nmap <Leader>tl :TagbarToggle<CR>
