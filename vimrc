@@ -173,6 +173,7 @@ set cursorline
 
 " Set borderline (or reference line)
 set colorcolumn=80 " or set cc=80, use set cc= to unset the option
+"hi ColorColumn ctermbg=black
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -687,16 +688,62 @@ map <Leader><space> :FixWhitespace<CR>
 "  ds  - delete a surrounding
 "  cs  - change a surrounding
 "  ys  - add a surrounding (Note: "ys" for "you surround")
-"  yS  - add a surrounding and place the surrounded text on a new line + indent it
 "  yss - add a surrounding to the whole line
-"  ySs - add a surrounding to the whole line, place it on a new line + indent it
-"  ySS - same as ySs
 "
 "  Visual mode
-"  s   - in visual mode, add a surrounding
 "  S   - in visual mode, add a surrounding but place text on new line + indent it
 "
 " see :help surround for more
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-fugitive
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"COMMANDS                                        *fugitive-commands*
+
+"These commands are local to the buffers in which they work (generally, buffers
+"that are part of Git repositories).
+"                                                *fugitive-:Git*
+":Git [args]             Run an arbitrary git command. Similar to :!git [args]
+"                        but chdir to the repository tree first.
+"                                                *fugitive-:Gstatus*
+":Gstatus                Bring up the output of git-status in the preview
+"                        window.  The following maps, which work on the cursor
+"                        line file where sensible, are provided:
+"
+"                        g?    show this help
+"                        q     close status
+"                        ...
+"                                                *fugitive-:Gblame*
+":Gblame [flags]         Run git-blame on the file and open the results in a
+"                        scroll bound vertical split.  You can give any of
+"                        ltfnsewMC as flags and they will be passed along to
+"                        git-blame.  The following maps, which work on the
+"                        cursor line commit where sensible, are provided:
+"
+"                        g?    show this help
+"                        q     close blame and return to blamed window
+"                        ...
+"                                                *fugitive-:Gdiff*
+":Gdiff [revision]       Perform a |vimdiff| against the current file in the
+"                        given revision.  With no argument, the version in the
+"                        index is used (which means a three-way diff during a
+"                        merge conflict, making it a git-mergetool
+"                        alternative).  The newer of the two files is placed
+"                        to the right or bottom, depending on 'diffopt' and
+"                        the width of the window relative to 'textwidth'.  Use
+"                        |do| and |dp| and write to the index file to simulate
+"                        'git add --patch'.
+"
+"                                                *fugitive-:Gsdiff*
+":Gsdiff [revision]      Like |:Gdiff|, but always split horizontally.
+"
+"                                                *fugitive-:Gvdiff*
+":Gvdiff [revision]      Like |:Gdiff|, but always split vertically.
+
+"use ':help fugitive' to see more detail of commands
+
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gb :Gblame<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
@@ -863,7 +910,6 @@ let g:pymode_folding = 0
 let g:pymode_virtualenv = 0
 let g:pymode_breakpoint = 0
 let g:pymode_lint_signs = 0
-let g:pymode_options_colorcolumn = 0
 
 let g:pymode_quickfix_minheight = 5
 let g:pymode_quickfix_maxheight = 10
