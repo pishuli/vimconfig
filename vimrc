@@ -593,8 +593,8 @@ let g:ctrlp_prompt_mappings = {
 cnoremap <C-N> <Down>
 cnoremap <C-P> <Up>
 
-nnoremap <Leader>g :Grepper -tool git -cword<CR>
-nnoremap <Leader>G :Grepper -tool ag -cword<CR>
+nnoremap <Leader>g :Grepper -tool ag -cword<CR>
+nnoremap <Leader>G :Grepper -tool git -cword<CR>
 " see https://github.com/ggreer/the_silver_searcher for more about ag
 
 let g:grepper = {
@@ -745,8 +745,13 @@ map <Leader><space> :FixWhitespace<CR>
 
 "use ':help fugitive' to see more detail of commands
 
+nmap <Leader>gx :Gdiff<CR>
 nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gb :Gblame<CR>
+nmap <Leader>gc :Gcommit<CR>
+
+" Auto-clean fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
