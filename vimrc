@@ -106,6 +106,9 @@ if has('mouse')
   set mouse=a
 endif
 
+" Option settings for diff mode
+set diffopt=vertical,context:3
+
 " With a map leader it's possible to do extra key combinations
 " like <Leader>w saves the current file
 let mapleader = ","
