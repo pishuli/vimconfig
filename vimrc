@@ -4,6 +4,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
@@ -737,12 +738,6 @@ map <Leader><space> :FixWhitespace<CR>
 "                        |do| and |dp| and write to the index file to simulate
 "                        'git add --patch'.
 "
-"                                                *fugitive-:Gsdiff*
-":Gsdiff [revision]      Like |:Gdiff|, but always split horizontally.
-"
-"                                                *fugitive-:Gvdiff*
-":Gvdiff [revision]      Like |:Gdiff|, but always split vertically.
-
 "use ':help fugitive' to see more detail of commands
 
 nmap <Leader>gx :Gdiff<CR>
