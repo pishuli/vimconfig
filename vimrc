@@ -594,17 +594,19 @@ let g:ctrlp_prompt_mappings = {
 cnoremap <C-N> <Down>
 cnoremap <C-P> <Up>
 
-nnoremap <Leader>g :Grepper -tool ag -cword<CR>
-nnoremap <Leader>G :Grepper -tool git -cword<CR>
+nnoremap <Leader>g :Grepper -tool git -cword<CR>
+nnoremap <Leader>G :Grepper -tool ag -cword<CR>
+nnoremap <leader>* :Grepper -tool ag -cword -noprompt<cr>
 " see https://github.com/ggreer/the_silver_searcher for more about ag
 
 let g:grepper = {
-    \ 'tools': ['ag', 'git', 'grep'],
+    \ 'tools': ['git', 'ag', 'grep'],
     \ 'next_tool': '<Leader>g',
     \ }
 
+" git grep from the root directory
 let g:grepper.git =
-  \ { 'grepprg': 'git -C `git rev-parse --show-toplevel` grep -nI' }
+  \ { 'grepprg': 'git grep -nI $* -- `git rev-parse --show-toplevel`' }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
