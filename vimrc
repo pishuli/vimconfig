@@ -491,12 +491,7 @@ map t <Plug>(easymotion-bd-t)
 
 " n-character search motion
 map / <Plug>(easymotion-sn)
-
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
-" Without these mappings, `n` & `N` works fine. (These mappings just provide
-" different highlight method and have some other features )
-map n <Plug>(easymotion-next)
-map N <Plug>(easymotion-prev)
+map ? <Plug>(easymotion-sn)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indentLine
@@ -596,7 +591,8 @@ cnoremap <C-P> <Up>
 
 nnoremap <Leader>g :Grepper -tool git -cword<CR>
 nnoremap <Leader>G :Grepper -tool ag -cword<CR>
-nnoremap <leader>* :Grepper -tool ag -cword -noprompt<cr>
+"nnoremap <Leader>* :Grepper -tool ag -cword -noprompt<cr>
+nnoremap <Leader># :Grepper -tool ag -cword -noprompt<cr>
 " see https://github.com/ggreer/the_silver_searcher for more about ag
 
 let g:grepper = {
