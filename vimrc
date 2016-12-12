@@ -853,7 +853,7 @@ let g:tmuxline_preset = {
     \'a'       : '#S',
     \'win'     : '#I #W',
     \'cwin'    : '#I #W',
-    \'y'       : ['%a', '%Y/%m/%d %R', 'load average: #(cat /proc/loadavg | cut -d " " -f1-3)'],
+    \'y'       : ['loadavg: #(cat /proc/loadavg | cut -d " " -f1-3)'],
     \'z'       : '#(whoami)@#H',
     \'options' : {'status-justify' : 'left'}}
 
