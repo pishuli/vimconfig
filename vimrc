@@ -892,7 +892,7 @@ let g:vim_markdown_json_frontmatter = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-instant-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:instant_markdown_slow = 1
+"let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 
 " manually trigger preview via the command :InstantMarkdownPreview.
