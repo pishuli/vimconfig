@@ -147,7 +147,7 @@ else
     set background=dark
 endif
 
-"set background=light
+set background=light
 
 if &background == "light"
     let g:solarized_termcolors=256
