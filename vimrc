@@ -190,7 +190,7 @@ set whichwrap+=<,>,h,l
 " Text, tab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " expand tab with spaces
-"set expandtab
+set expandtab
 
 " 1 tab == 4 spaces
 set tabstop=4
