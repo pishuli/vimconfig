@@ -22,6 +22,7 @@ Plugin 'mhinz/vim-grepper'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/cpp.vim'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'easymotion/vim-easymotion'
@@ -35,6 +36,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'elzr/vim-json'
 Plugin 'klen/python-mode'
 Plugin 'stephpy/vim-yaml'
@@ -899,6 +901,15 @@ let g:instant_markdown_autostart = 0
 " manually trigger preview via the command :InstantMarkdownPreview.
 " the command is only available inside markdown buffers and when the autostart option is turned off.
 map <Leader>md :InstantMarkdownPreview<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-cpp-enhanced-highlight
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let c_no_curly_error=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python mode
