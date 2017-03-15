@@ -980,3 +980,9 @@ let g:pymode_options_max_line_length = 99
 "let g:rust_fold = 1
 "let g:rustfmt_autosave = 1
 "nmap <Leader>r :RustRun<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" highlighting for Qt’s .pro and .pri files
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.pro set filetype=make
+au BufNewFile,BufRead *.pri set filetype=make
