@@ -143,11 +143,11 @@ endif
 
 set conceallevel=2
 
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-endif
+"if has('gui_running')
+"    set background=light
+"else
+"    set background=dark
+"endif
 
 set background=light
 
