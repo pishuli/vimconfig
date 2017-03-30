@@ -21,6 +21,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mhinz/vim-grepper'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
 Plugin 'jakub-olczyk/cpp.vim'
 Plugin 'vim-scripts/TaskList.vim'
@@ -423,9 +424,9 @@ nmap <Leader>cw :cw 10<CR>
 " Close the quickfix window
 nmap <Leader>cq :cclose<CR>
 " Go to older error list
-nmap <Leader>co :colder<CR>
+"nmap <Leader>co :colder<CR>
 " Go to newer error list
-nmap <Leader>ca :cnewer<CR>
+"nmap <Leader>ca :cnewer<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Alternate Files quickly (a.vim)
@@ -523,6 +524,57 @@ let NERDTreeIgnore=[ '\~$', '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.eg
 " F.......Toggle whether files are displayed.......................|NERDTree-F|
 " B.......Toggle whether the bookmark table is displayed...........|NERDTree-B|
 " See more details with :help NERDTreeMappings
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERD Commenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" The whole lines to be commented out when there is no multipart delimiters,
+" but the EXACT text that was selected to be commented out if there IS multipart delimiters.
+let g:NERDCommentWholeLinesInVMode=2
+
+" Key mappings
+" If set to 0, none of the default mappings will be created.
+let g:NERDCreateDefaultMappings=0
+
+" Comment out the current line or text selected in visual mode.
+map <Leader>cc <Plug>NERDComComment
+
+" Uncomments the selected line(s).
+map <Leader>cu <Plug>NERDComUncommentLine
+
+" Toggles the comment state of the selected line(s). If the topmost selected
+" line is commented, all selected lines are uncommented and vice versa.
+map <Leader>c<space> <Plug>NERDComToggleComment
+
+" Comments the given lines using only one set of multipart delimiters.
+map <Leader>cm <PLug>NERDComMinimalComment
+
+" Toggles the comment state of the selected line(s) individually.
+map <Leader>ci <Plug>NERDComInvertComment
+
+" Comments out the selected lines ``sexily''
+map <Leader>cs <Plug>NERDComSexyComment
+
+" Comments the current line from the cursor to the end of line.
+map <Leader>c$ <Plug>NERDComEOLComment
+
+" Switches to the alternative set of delimiters.
+map <Leader>ca <Plug>NERDComAltDelim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
