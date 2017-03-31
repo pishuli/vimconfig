@@ -423,10 +423,6 @@ nmap <Leader>cp :cprevious<CR>
 nmap <Leader>cw :cw 10<CR>
 " Close the quickfix window
 nmap <Leader>cq :cclose<CR>
-" Go to older error list
-"nmap <Leader>co :colder<CR>
-" Go to newer error list
-"nmap <Leader>ca :cnewer<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Alternate Files quickly (a.vim)
@@ -547,34 +543,56 @@ let g:NERDTrimTrailingWhitespace = 1
 " but the EXACT text that was selected to be commented out if there IS multipart delimiters.
 let g:NERDCommentWholeLinesInVMode=2
 
-" Key mappings
-" If set to 0, none of the default mappings will be created.
-let g:NERDCreateDefaultMappings=0
+" The following key mappings are provided by default (there is also a menu
+" with items corresponding to all the mappings below):
 
+" [count]<Leader>cc NERDComComment
 " Comment out the current line or text selected in visual mode.
-map <Leader>cc <Plug>NERDComComment
 
+" [count]<Leader>cu NERDComUncommentLine
 " Uncomments the selected line(s).
-map <Leader>cu <Plug>NERDComUncommentLine
 
+" [count]<Leader>c<space> NERDComToggleComment
 " Toggles the comment state of the selected line(s). If the topmost selected
 " line is commented, all selected lines are uncommented and vice versa.
-map <Leader>c<space> <Plug>NERDComToggleComment
 
+" [count]<Leader>cm NERDComMinimalComment
 " Comments the given lines using only one set of multipart delimiters.
-map <Leader>cm <PLug>NERDComMinimalComment
 
+" [count]<Leader>ci NERDComInvertComment
 " Toggles the comment state of the selected line(s) individually.
-map <Leader>ci <Plug>NERDComInvertComment
 
+" [count]<Leader>cs NERDComSexyComment
 " Comments out the selected lines ``sexily''
-map <Leader>cs <Plug>NERDComSexyComment
 
+" <Leader>c$ NERDComEOLComment
 " Comments the current line from the cursor to the end of line.
-map <Leader>c$ <Plug>NERDComEOLComment
 
+" <Leader>ca NERDComAltDelim
 " Switches to the alternative set of delimiters.
-map <Leader>ca <Plug>NERDComAltDelim
+
+" [count]<Leader>cy NERDComYankComment
+" Same as <Leader>cc except that the commented line(s) are yanked first.
+
+" <Leader>cA NERDComAppendComment
+" Adds comment delimiters to the end of line and goes into insert mode between them.
+nmap <Leader>co <Plug>NERDCommenterAppend
+
+" NERDComInsertComment
+" Adds comment delimiters at the current cursor position and inserts between.
+" Disabled by default.
+imap <Leader>cI <Plug>NERDCommenterInsert
+
+" [count]<Leader>cn NERDComNestedComment
+" Same as <Leader>cc but forces nesting.
+map <Leader>cN <Plug>NERDCommenterNested
+
+" [count]<Leader>cl
+" [count]<Leader>cb    NERDComAlignedComment
+" Same as NERDComComment except that the delimiters are aligned down the
+" left side (<Leader>cl) or both sides (<Leader>cb).
+map <Leader>cL <Plug>NERDCommenterAlignLeft
+"map <Leader>cB <Plug>NERDCommenterAlignBoth
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
