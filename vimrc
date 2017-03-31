@@ -581,7 +581,7 @@ nmap <Leader>co <Plug>NERDCommenterAppend
 " NERDComInsertComment
 " Adds comment delimiters at the current cursor position and inserts between.
 " Disabled by default.
-imap <Leader>cI <Plug>NERDCommenterInsert
+imap <Leader>ci <Plug>NERDCommenterInsert
 
 " [count]<Leader>cn NERDComNestedComment
 " Same as <Leader>cc but forces nesting.
