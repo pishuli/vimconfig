@@ -531,7 +531,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+"let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/' } }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
