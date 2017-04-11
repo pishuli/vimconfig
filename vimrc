@@ -209,6 +209,30 @@ set wrap "Wrap lines
 set list listchars=tab:→·,trail:·
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indenting C style text (see usr_30.txt - Editing programs for more detail)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" When you have code that is badly formatted, or you inserted and deleted lines,
+" you need to re-indent the lines.  The "=" operator does this.  The simplest
+" form is:
+"
+"   ==
+"
+" This indents the current line.  Like with all operators, there are three ways
+" to use it.  In Visual mode "=" indents the selected lines.  A useful text
+" object is "a{".  This selects the current {} block.  Thus, to re-indent the
+" code block the cursor is in:
+"
+"   =a{
+"
+" I you have really badly indented code, you can re-indent the whole file with:
+"
+"   gg=G
+"
+" However, don't do this in files that have been carefully indented manually.
+" The automatic indenting does a good job, but in some situations you might want
+" to overrule it.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files, backups
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
@@ -264,6 +288,12 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
           \ | wincmd p | diffthis
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" highlighting for Qt’s .pro and .pri files
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.pro set filetype=make
+au BufNewFile,BufRead *.pri set filetype=make
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around, tabs, windows and buffers
@@ -1055,8 +1085,3 @@ let g:pymode_options_max_line_length = 99
 "let g:rustfmt_autosave = 1
 "nmap <Leader>r :RustRun<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" highlighting for Qt’s .pro and .pri files
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.pro set filetype=make
-au BufNewFile,BufRead *.pri set filetype=make
