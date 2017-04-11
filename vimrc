@@ -585,6 +585,7 @@ let g:NERDCommentWholeLinesInVMode=2
 " [count]<Leader>c<space> NERDComToggleComment
 " Toggles the comment state of the selected line(s). If the topmost selected
 " line is commented, all selected lines are uncommented and vice versa.
+map <Leader>ct <Plug>NERDCommenterToggle
 
 " [count]<Leader>cm NERDComMinimalComment
 " Comments the given lines using only one set of multipart delimiters.
@@ -600,13 +601,14 @@ let g:NERDCommentWholeLinesInVMode=2
 
 " <Leader>ca NERDComAltDelim
 " Switches to the alternative set of delimiters.
+nmap <Leader>c<space> <Plug>NERDCommenterAltDelims
 
 " [count]<Leader>cy NERDComYankComment
 " Same as <Leader>cc except that the commented line(s) are yanked first.
 
 " <Leader>cA NERDComAppendComment
 " Adds comment delimiters to the end of line and goes into insert mode between them.
-nmap <Leader>co <Plug>NERDCommenterAppend
+nmap <Leader>ca <Plug>NERDCommenterAppend
 
 " NERDComInsertComment
 " Adds comment delimiters at the current cursor position and inserts between.
