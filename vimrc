@@ -360,8 +360,8 @@ nmap <Leader>ls :ls<CR>
 " the :ls command is the same as :buffers
 nmap <Leader>b  :buffer<Space>
 nmap <Leader>bd :bdelete<Space>
-nnoremap <C-N> :bnext<CR>
-nnoremap <C-P> :bprevious<CR>
+nnoremap <C-N>  :bnext<CR>
+nnoremap <C-P>  :bprevious<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast edit vimrc
