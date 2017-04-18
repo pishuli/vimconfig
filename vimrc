@@ -192,8 +192,9 @@ set whichwrap+=<,>,h,l
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text, tab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" expand tab with spaces
+" Expand tab with spaces
 set expandtab
+nmap <Leader>rt :retab!<CR>
 
 " 1 tab == 4 spaces
 set tabstop=4
