@@ -408,6 +408,11 @@ nmap <Leader>m :Man<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cscope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Excute commands below in the project root dir to generate cscope database:
+"   find -type f > cscope.files
+"   cscope -bq
+" generated files: cscope.files, cscope.in.out, cscope.out, cscope.po.out.
+"
 if has("cscope")
   set csprg=/usr/bin/cscope
   set csqf=s-,c-,d-,i-,t-,e-
