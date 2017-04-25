@@ -647,9 +647,20 @@ nmap <Leader>fr :CtrlPMRU<CR>
 
 let g:ctrlp_regexp = 1
 let g:ctrlp_arg_map = 1
-
-let g:ctrlp_user_command =
-  \ ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
+        \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
+    \ },
+    \ 'fallback': 'ag %s -l --nocolor --nogroup --hidden
+            \ --ignore .git
+            \ --ignore out
+            \ --ignore .svn
+            \ --ignore .hg
+            \ --ignore .DS_Store
+            \ -g ""',
+    \ 'ignore': 1
+\ }
 
 " Disable output, vcs, archive, temp and backup files
 set wildignore+=*.swp,*~,._*
