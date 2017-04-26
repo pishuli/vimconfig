@@ -16,15 +16,19 @@ $ ln -s vimconfig/vim .vim
 $ ln -s vimconfig/vimrc .vimrc
 ```
 
-## Install Vundle plugin manager
+## Install ~~Vundle~~ `vim-plug` plugin manager
 
+~~$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim~~
+
+Download [plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim) and put it in the `autoload` directory.
 ```bash
-$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 ## Install other plugins
 
-Launch vim and run`:PluginInstall`command or run `vim +PluginInstall +qall` from command line directly.  
+Launch vim and run ~~:PluginInstall~~ `:PlugInstall` command or run ~~vim +PluginInstall +qall~~ `vim +PlugInstall +qall` from command line directly.  
 After done that, please go to <https://github.com/Valloric/YouCompleteMe> or use `:help youcompleteme` command to see more about the installation of YouCompleteMe plugin.
 
 ## Install powerline fonts

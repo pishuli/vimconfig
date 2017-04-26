@@ -1,78 +1,89 @@
+set nocompatible    " be iMproved, required
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle plugin manager
+" vim-plug (Minimalist Vim Plugin Manager)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Download plug.vim and put it in the 'autoload' directory.
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+" Specify a directory for plugins
+"call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundle')
 
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Make sure you use single quotes
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+"Plug 'junegunn/vim-easy-align'
 
-Plugin 'ShowMarks'
-Plugin 'Marks-Browser'
-Plugin 'tomasr/molokai'
-Plugin 'kien/ctrlp.vim'
-Plugin 'dyng/ctrlsf.vim'
-Plugin 'mhinz/vim-grepper'
-Plugin 'vim-scripts/a.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'majutsushi/tagbar'
-Plugin 'jakub-olczyk/cpp.vim'
-Plugin 'vim-scripts/TaskList.vim'
-Plugin 'vim-scripts/sessionman.vim'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'Yggdroot/indentLine'
-Plugin 'ervandew/supertab'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'suan/vim-instant-markdown'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'elzr/vim-json'
-Plugin 'klen/python-mode'
-Plugin 'stephpy/vim-yaml'
-Plugin 'cespare/vim-toml'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'rust-lang/rust.vim'
-"Plugin 'edkolev/tmuxline.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'terryma/vim-multiple-cursors'
+" Any valid git URL is allowed
+"Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"filetype plugin indent on    " required
+" Multiple Plug commands can be written in a single line using | separators
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" Enable file type detection.
-" Use the default filetype settings, so that mail gets 'tw' set to 72,
-" 'cindent' is on in C files, etc.
-" Also load indent files, to automatically do language-dependent indenting.
-filetype plugin indent on
+" On-demand loading
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Using a non-master branch
+"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+"Plug 'fatih/vim-go', { 'tag': '*' }
+
+" Plugin options
+"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Unmanaged plugin (manually installed and updated)
+"Plug '~/my-prototype-plugin'
+
+Plug 'tomasr/molokai'
+Plug 'kien/ctrlp.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'mhinz/vim-grepper'
+Plug 'vim-scripts/a.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'majutsushi/tagbar'
+Plug 'jakub-olczyk/cpp.vim'
+Plug 'vim-scripts/ShowMarks'
+Plug 'vim-scripts/Marks-Browser'
+Plug 'vim-scripts/TaskList.vim'
+Plug 'vim-scripts/sessionman.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Yggdroot/indentLine'
+Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'scrooloose/syntastic'
+Plug 'Valloric/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'plasticboy/vim-markdown'
+Plug 'suan/vim-instant-markdown'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'elzr/vim-json'
+Plug 'klen/python-mode'
+Plug 'stephpy/vim-yaml'
+Plug 'cespare/vim-toml'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'rust-lang/rust.vim'
+"Plug 'edkolev/tmuxline.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'altercation/vim-colors-solarized'
+Plug 'terryma/vim-multiple-cursors'
+
+" Initialize plugin system
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
