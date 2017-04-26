@@ -18,6 +18,7 @@ Plugin 'ShowMarks'
 Plugin 'Marks-Browser'
 Plugin 'tomasr/molokai'
 Plugin 'kien/ctrlp.vim'
+Plugin 'dyng/ctrlsf.vim'
 Plugin 'mhinz/vim-grepper'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/nerdtree'
@@ -348,7 +349,7 @@ nmap <Leader>q :q!<CR>
 nmap <Leader>qa :qa!<CR>
 
 " Split window
-nmap <Leader>sp :split<CR>
+nmap <Leader>hs :split<CR>
 
 " Split window vertical
 nmap <Leader>vs :vsplit<CR>
@@ -708,6 +709,24 @@ let g:ctrlp_prompt_mappings = {
   \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlSF
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Usage (see :help ctrlsf-usage)
+" Key Maps (see :help ctrlsf-keymaps)
+" Arguments (see :help ctrlsf-arguments)
+" Options (see :help ctrlsf-options)
+
+let g:ctrlsf_default_root = 'project+fw'
+
+nmap <Leader>sf <Plug>CtrlSFPrompt
+vmap <Leader>sf <Plug>CtrlSFVwordPath
+nmap <Leader>sn <Plug>CtrlSFCwordPath
+nmap <Leader>sN <Plug>CtrlSFCCwordPath
+nmap <Leader>sp <Plug>CtrlSFPwordPath
+nnoremap <Leader>so :CtrlSFOpen<CR>
+nnoremap <Leader>st :CtrlSFToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Grepper
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for browsing the input history
@@ -877,11 +896,15 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 "To change the hunk-jumping maps (defaults shown):
 "  nmap [c <Plug>GitGutterPrevHunk
 "  nmap ]c <Plug>GitGutterNextHunk
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 
 "To change the hunk-staging/undoing/previewing maps (defaults shown):
 "  nmap <Leader>hs <Plug>GitGutterStageHunk
 "  nmap <Leader>hu <Plug>GitGutterUndoHunk
 "  nmap <Leader>hp <Plug>GitGutterPreviewHunk
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterUndoHunk
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
