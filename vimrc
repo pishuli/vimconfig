@@ -44,43 +44,43 @@ call plug#begin('~/.vim/bundle')
 Plug 'tomasr/molokai'
 Plug 'kien/ctrlp.vim'
 Plug 'dyng/ctrlsf.vim'
+Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-grepper'
 Plug 'vim-scripts/a.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'majutsushi/tagbar'
-Plug 'jakub-olczyk/cpp.vim'
 Plug 'vim-scripts/ShowMarks'
 Plug 'vim-scripts/Marks-Browser'
 Plug 'vim-scripts/TaskList.vim'
 Plug 'vim-scripts/sessionman.vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'jiangmiao/auto-pairs'
-Plug 'Yggdroot/indentLine'
-Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'scrooloose/syntastic'
+Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
+Plug 'easymotion/vim-easymotion'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-Plug 'plasticboy/vim-markdown'
-Plug 'suan/vim-instant-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'jakub-olczyk/cpp.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'elzr/vim-json'
-Plug 'klen/python-mode'
-Plug 'stephpy/vim-yaml'
-Plug 'cespare/vim-toml'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'Yggdroot/indentLine'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
-Plug 'rust-lang/rust.vim'
-"Plug 'edkolev/tmuxline.vim'
 Plug 'airblade/vim-gitgutter'
+"Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'altercation/vim-colors-solarized'
-Plug 'terryma/vim-multiple-cursors'
 
 " Initialize plugin system
 call plug#end()
