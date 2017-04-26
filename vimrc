@@ -53,6 +53,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'terryma/vim-multiple-cursors'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -712,12 +713,11 @@ let g:ctrlp_prompt_mappings = {
 " CtrlSF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usage (see :help ctrlsf-usage)
-" Key Maps (see :help ctrlsf-keymaps)
-" Arguments (see :help ctrlsf-arguments)
+"
 " Options (see :help ctrlsf-options)
-
 let g:ctrlsf_default_root = 'project+fw'
 
+" Key Maps (see :help ctrlsf-keymaps)
 nmap <Leader>sf <Plug>CtrlSFPrompt
 vmap <Leader>sf <Plug>CtrlSFVwordPath
 nmap <Leader>sn <Plug>CtrlSFCwordPath
@@ -1127,3 +1127,24 @@ let g:pymode_options_max_line_length = 99
 "let g:rustfmt_autosave = 1
 "nmap <Leader>r :RustRun<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-multiple-cursors
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Usage (see :help multiple-cursors-usage)
+"
+" Global Options (see :help multiple-cursors-global-options)
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
+
+" Mappings (see :help multiple-cursors-mappings)
+" *g:multi_cursor_next_key* (Default: '<C-n>')
+" *g:multi_cursor_prev_key* (Default: '<C-p>')
+" *g:multi_cursor_skip_key* (Default: '<C-x>')
+" *g:multi_cursor_quit_key* (Default: '<Esc>')
+" *g:multi_cursor_start_key* (Default: 'g:multi_cursor_next_key')
+
+" Map start key separately from next key
+let g:multi_cursor_start_key='<C-a>'
+
+" Add multiple cursors using a regular expression
+nmap <Leader>cf :MultipleCursorsFind<space>
