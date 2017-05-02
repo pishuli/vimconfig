@@ -223,8 +223,10 @@ set wrap "Wrap lines
 set list listchars=tab:→·,trail:·
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indenting C style text (see usr_30.txt - Editing programs for more detail)
+" Indenting C style text
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help usr_30)
+"
 " When you have code that is badly formatted, or you inserted and deleted lines,
 " you need to re-indent the lines.  The "=" operator does this.  The simplest
 " form is:
@@ -293,6 +295,10 @@ autocmd BufReadPost *
   \   exe "normal! g`\"" |
   \ endif
 
+" Highlighting for Qt’s .pro and .pri files
+au BufNewFile,BufRead *.pro set filetype=make
+au BufNewFile,BufRead *.pri set filetype=make
+
 augroup END
 
 " Convenient command to see the difference between the current buffer and the
@@ -302,12 +308,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
           \ | wincmd p | diffthis
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" highlighting for Qt’s .pro and .pri files
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.pro set filetype=make
-au BufNewFile,BufRead *.pri set filetype=make
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Moving around, tabs, windows and buffers
@@ -421,6 +421,8 @@ nmap <Leader>m :Man<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cscope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help cscope)
+"
 " Excute commands below in the project root dir to generate cscope database:
 "   find -type f > cscope.files
 "   cscope -bq
@@ -462,6 +464,8 @@ nmap <Leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help quickfix)
+"
 " List all errors.
 nmap <Leader>cl :clist!<CR>
 " Display the next error in the list
@@ -488,6 +492,8 @@ nmap <Leader>at :AT<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Showmarks
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help showmarks)
+"
 " Enable ShowMarks
 let showmarks_enable = 1
 
@@ -515,6 +521,8 @@ nmap <Leader>mb :MarksBrowser<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help easymotion)
+"
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1 " Turn on case insensitive feature
 
@@ -544,6 +552,8 @@ map ? <Plug>(easymotion-sn)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indentLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help indentline)
+"
 let g:indentLine_concealcursor = ''
 let g:indentLine_leadingSpaceChar = '·'
 "let g:indentLine_leadingSpaceEnabled = 1
@@ -552,6 +562,8 @@ let g:indentLine_leadingSpaceChar = '·'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help NERDTree)
+"
 " Global commands
 " :NERDTree [<start-directory> | <bookmark>], help :NERDTree to see more detail
 nmap <Leader>n :NERDTree<Space>
@@ -559,20 +571,11 @@ nmap <Leader>nt :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\~$', '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 
-" Bookmark commands
-" Note that the following commands are only available in the NERD tree buffer.
-" :Bookmark [<name>], bookmark the current node as <name>, help :Bookmark to see more detail
-" :ClearBookmarks [<bookmarks>], Remove all the given bookmarks. If no bookmarks are given then remove all bookmarks on the current node.
-
-" Mappings
-" I.......Toggle whether hidden files displayed....................|NERDTree-I|
-" F.......Toggle whether files are displayed.......................|NERDTree-F|
-" B.......Toggle whether the bookmark table is displayed...........|NERDTree-B|
-" See more details with :help NERDTreeMappings
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERD Commenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help NERDCommenter)
+"
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -648,6 +651,8 @@ map <Leader>cL <Plug>NERDCommenterAlignLeft
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help ctrlp)
+"
 " :CtrlP Open CtrlP in file mode
 " :CtrlPBuffer Open CtrlP in find buffer mode
 " :CtrlPMRU Open CtrlP in find Most-Recently-Used file mode
@@ -655,8 +660,8 @@ map <Leader>cL <Plug>NERDCommenterAlignLeft
 let g:ctrlp_map = '<Leader>ff' " the mapping to invoke CtrlP in Normal mode, default is '<C-P>'
 "let g:ctrlp_cmd = 'CtrlP' " the default opening command to use when pressing the above mapping
 
-nmap <Leader>fb :CtrlPBuffer<CR>
 nmap <Leader>fr :CtrlPMRU<CR>
+nmap <Leader>fb :CtrlPBuffer<CR>
 
 let g:ctrlp_regexp = 1
 let g:ctrlp_arg_map = 1
@@ -687,49 +692,17 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " mappings inside CtrlP's prompt, see :help ctrlp_prompt_mappings
-let g:ctrlp_prompt_mappings = {
-  \ 'PrtBS()':              ['<bs>'],
-  \ 'PrtDelete()':          ['<del>'],
-  \ 'PrtDeleteWord()':      ['<c-w>'],
-  \ 'PrtClear()':           ['<c-u>'],
-  \ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
-  \ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
-  \ 'PrtSelectMove("t")':   ['<Home>'],
-  \ 'PrtSelectMove("b")':   ['<End>'],
-  \ 'PrtSelectMove("u")':   ['<PageUp>'],
-  \ 'PrtSelectMove("d")':   ['<PageDown>'],
-  \ 'PrtHistory(-1)':       ['<c-n>'],
-  \ 'PrtHistory(1)':        ['<c-p>'],
-  \ 'AcceptSelection("e")': ['<cr>'],
-  \ 'AcceptSelection("h")': ['<c-x>'],
-  \ 'AcceptSelection("t")': ['<c-t>'],
-  \ 'AcceptSelection("v")': ['<c-v>'],
-  \ 'ToggleFocus()':        ['<s-tab>'],
-  \ 'ToggleRegex()':        ['<c-r>'],
-  \ 'ToggleByFname()':      ['<c-d>'],
-  \ 'ToggleType(1)':        ['<c-f>'],
-  \ 'ToggleType(-1)':        ['<c-b>'],
-  \ 'PrtCurStart()':        ['<c-a>'],
-  \ 'PrtCurEnd()':          ['<c-e>'],
-  \ 'PrtCurLeft()':         ['<left>'],
-  \ 'PrtCurRight()':        ['<right>'],
-  \ 'PrtClearCache()':      ['<F5>'],
-  \ 'CreateNewFile()':      ['<c-y>'],
-  \ 'MarkToOpen()':         ['<c-z>'],
-  \ 'OpenMulti()':          ['<c-o>'],
-  \ 'PrtExit()':            ['<esc>'],
-  \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlSF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Usage (see :help ctrlsf-usage)
+" Manual (see :help ctrlsf)
 "
 " Options (see :help ctrlsf-options)
 let g:ctrlsf_default_root = 'project+fw'
 
 " Key Maps (see :help ctrlsf-keymaps)
-nmap <Leader>sf <Plug>CtrlSFPrompt
+nmap <Leader>sf <Plug>CtrlSFPrompt<C-R>=expand("<cword>")<CR>
 vmap <Leader>sf <Plug>CtrlSFVwordPath
 nmap <Leader>sn <Plug>CtrlSFCwordPath
 nmap <Leader>sN <Plug>CtrlSFCCwordPath
@@ -740,6 +713,8 @@ nnoremap <Leader>st :CtrlSFToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Grepper
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help grepper)
+"
 " for browsing the input history
 cnoremap <C-N> <Down>
 cnoremap <C-P> <Up>
@@ -762,6 +737,8 @@ let g:grepper.git =
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help tagbar)
+"
 let g:tagbar_sort = 0
 let g:tagbar_autofocus = 1
 nmap <Leader>tb :TagbarToggle<CR>
@@ -775,12 +752,16 @@ nmap <Leader>td <Plug>TaskList
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SuperTab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help supertab)
+"
 " make YCM compatible with Ultisnips
 let g:SuperTabDefaultCompletionType = '<C-N>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help youcompleteme)
+"
 set completeopt=longest,menu
 
 let g:ycm_rust_src_path = '/usr/local/src/rust/src'
@@ -805,6 +786,8 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ultisnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help UltiSnips)
+"
 let g:UltiSnipsExpandTrigger       = '<TAB>'
 let g:UltiSnipsJumpForwardTrigger  = '<TAB>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
@@ -813,6 +796,8 @@ let g:UltiSnipsSnippetDirectories=["~/.vim/snippets", "~/.vim/bundle/vim-snippet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help syntastic and :help syntastic-checkers)
+"
 let g:syntastic_error_symbol = '✗>'
 let g:syntastic_warning_symbol = '*>'
 let g:syntastic_python_checkers=['pyflakes', 'pep8']
@@ -836,11 +821,15 @@ set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trailing whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help trailing-whitespace)
+"
 map <Leader><space> :FixWhitespace<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-surround
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help surround)
+"
 " Normal mode
 "  ds  - delete a surrounding
 "  cs  - change a surrounding
@@ -849,50 +838,12 @@ map <Leader><space> :FixWhitespace<CR>
 "
 "  Visual mode
 "  S   - in visual mode, add a surrounding but place text on new line + indent it
-"
-" see :help surround for more
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"COMMANDS                                        *fugitive-commands*
-
-"These commands are local to the buffers in which they work (generally, buffers
-"that are part of Git repositories).
-"                                                *fugitive-:Git*
-":Git [args]             Run an arbitrary git command. Similar to :!git [args]
-"                        but chdir to the repository tree first.
-"                                                *fugitive-:Gstatus*
-":Gstatus                Bring up the output of git-status in the preview
-"                        window.  The following maps, which work on the cursor
-"                        line file where sensible, are provided:
+" Manual (see :help fugitive)
 "
-"                        g?    show this help
-"                        q     close status
-"                        ...
-"                                                *fugitive-:Gblame*
-":Gblame [flags]         Run git-blame on the file and open the results in a
-"                        scroll bound vertical split.  You can give any of
-"                        ltfnsewMC as flags and they will be passed along to
-"                        git-blame.  The following maps, which work on the
-"                        cursor line commit where sensible, are provided:
-"
-"                        g?    show this help
-"                        q     close blame and return to blamed window
-"                        ...
-"                                                *fugitive-:Gdiff*
-":Gdiff [revision]       Perform a |vimdiff| against the current file in the
-"                        given revision.  With no argument, the version in the
-"                        index is used (which means a three-way diff during a
-"                        merge conflict, making it a git-mergetool
-"                        alternative).  The newer of the two files is placed
-"                        to the right or bottom, depending on 'diffopt' and
-"                        the width of the window relative to 'textwidth'.  Use
-"                        |do| and |dp| and write to the index file to simulate
-"                        'git add --patch'.
-"
-"use ':help fugitive' to see more detail of commands
-
 nmap <Leader>gx :Gdiff<CR>
 nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gb :Gblame<CR>
@@ -904,6 +855,8 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help gitgutter)
+"
 "To change the hunk-jumping maps (defaults shown):
 "  nmap [c <Plug>GitGutterPrevHunk
 "  nmap ]c <Plug>GitGutterNextHunk
@@ -920,6 +873,8 @@ nmap <Leader>hr <Plug>GitGutterUndoHunk
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help airline)
+"
 set laststatus=2 " Always show the status line
 
 if &background == "light"
@@ -1020,6 +975,8 @@ let g:tmuxline_preset = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help vim-markdown)
+"
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_folding_level = 6
 
@@ -1033,17 +990,6 @@ let g:vim_markdown_json_frontmatter = 1
 
 "let g:vim_markdown_emphasis_multiline = 0
 "let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']
-
-" Mappings
-" - 'gx': open the link under the cursor in browser. '<Plug>Markdown_OpenUrlUnderCursor'
-" - 'ge': open the link under the cursor in Vim for editing. Useful for
-"   relative markdown links. '<Plug>Markdown_EditUrlUnderCursor'
-" - ']]': go to next header. '<Plug>Markdown_MoveToNextHeader'
-" - '[[': go to previous header. '<Plug>Markdown_MoveToPreviousHeader'
-" - '][': go to next sibling header if any. '<Plug>Markdown_MoveToNextSiblingHeader'
-" - '[]': go to previous sibling header if any. '<Plug>Markdown_MoveToPreviousSiblingHeader'
-" - ']c': go to Current header. '<Plug>Markdown_MoveToCurHeader'
-" - ']u': go to parent header (Up). '<Plug>Markdown_MoveToParentHeader'
 
 " Commands
 " - ':TableFormat': Format the table under the cursor
@@ -1071,6 +1017,8 @@ let c_no_curly_error=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help pymode)
+"
 " Common functionality
 " --------------------
 let g:pymode_run = 0
@@ -1097,26 +1045,6 @@ let g:pymode_options_max_line_length = 99
 "
 " Set value to `python3` if you are working with python3 projects.
 
-"                                                               *pymode-motion*
-" Support Vim motion for python objects (such as functions,
-" class and methods).
-"
-" C — means class
-" M — means method or function
-"                                                          *pymode-motion-keys*
-" ====  ============================
-" Key   Command
-" ====  ============================
-" [[    Jump to previous class or function (normal, visual, operator modes)
-" ]]    Jump to next class or function  (normal, visual, operator modes)
-" [M    Jump to previous class or method (normal, visual, operator modes)
-" ]M    Jump to next class or method (normal, visual, operator modes)
-" aC    Select a class. Ex: vaC, daC, yaC, caC (normal, operator modes)
-" iC    Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
-" aM    Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
-" iM    Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
-" ====  ============================
-
 "                                                        *pymode-documentation*
 " Pymode could show documentation for current word by pydoc.
 "
@@ -1134,6 +1062,8 @@ let g:pymode_options_max_line_length = 99
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rust
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Manual (see :help rust)
+"
 "let g:rust_fold = 1
 "let g:rustfmt_autosave = 1
 "nmap <Leader>r :RustRun<CR>
@@ -1141,7 +1071,7 @@ let g:pymode_options_max_line_length = 99
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-multiple-cursors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Usage (see :help multiple-cursors-usage)
+" Manual (see :help multiple-cursors)
 "
 " Global Options (see :help multiple-cursors-global-options)
 let g:multi_cursor_exit_from_visual_mode=0
@@ -1158,4 +1088,4 @@ let g:multi_cursor_exit_from_insert_mode=0
 let g:multi_cursor_start_key='<C-a>'
 
 " Add multiple cursors using a regular expression
-nmap <Leader>cf :MultipleCursorsFind<space>
+nmap <Leader>cf :MultipleCursorsFind <C-R>=expand("<cword>")<CR>
