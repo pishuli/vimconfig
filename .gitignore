@@ -2,4 +2,3 @@
 *.swp
 vim/bundle
 vim/sessions
-vim/autoload
