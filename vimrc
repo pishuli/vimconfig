@@ -43,7 +43,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tomasr/molokai'
 Plug 'kien/ctrlp.vim'
-Plug 'dyng/ctrlsf.vim'
+"Plug 'dyng/ctrlsf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-grepper'
 Plug 'vim-scripts/a.vim'
@@ -56,7 +56,7 @@ Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
 Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
