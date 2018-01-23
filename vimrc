@@ -444,17 +444,21 @@ endif
 " 0 or s: Find this C symbol
 nmap <Leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
 " 1 or g: Find this definition
-nmap <Leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <Leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>fd :cs find g <C-R>=expand("<cword>")<CR><CR>
 " 2 or d: Find functions called by this function
-nmap <Leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+"nmap <Leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>fc :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 3 or c: Find functions calling this function
-nmap <Leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <Leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>fr :cs find c <C-R>=expand("<cword>")<CR><CR>
 " 4 or t: Find this text string
 nmap <Leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
 " 6 or e: Find this egrep pattern
 nmap <Leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 " 7 or f: Find this file
 "nmap <Leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <Leader>fg :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " 8 or i: Find files #including this file
 nmap <Leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
@@ -657,7 +661,7 @@ map <Leader>cL <Plug>NERDCommenterAlignLeft
 let g:ctrlp_map = '<Leader>ff' " the mapping to invoke CtrlP in Normal mode, default is '<C-P>'
 "let g:ctrlp_cmd = 'CtrlP' " the default opening command to use when pressing the above mapping
 
-nmap <Leader>fr :CtrlPMRU<CR>
+"nmap <Leader>fr :CtrlPMRU<CR>
 nmap <Leader>fb :CtrlPBuffer<CR>
 
 let g:ctrlp_regexp = 1
