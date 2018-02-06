@@ -760,7 +760,8 @@ nmap <Leader>td <Plug>TaskList
 " Manual (see :help supertab)
 "
 " make YCM compatible with Ultisnips
-let g:SuperTabDefaultCompletionType = '<C-N>'
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = '<C-N>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
