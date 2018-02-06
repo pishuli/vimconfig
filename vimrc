@@ -324,16 +324,16 @@ map Q gq
 "map 0 ^
 
 " Smart way to move between windows
-"map <C-h> <C-W>h
-"map <C-j> <C-W>j
-"map <C-k> <C-W>k
-"map <C-l> <C-W>l
+nmap wh <C-W>h
+nmap wj <C-W>j
+nmap wk <C-W>k
+nmap wl <C-W>l
 
 " Smart way to resize windows
-map <C-h> <C-W><
-map <C-j> <C-W>+
-map <C-k> <C-W>-
-map <C-l> <C-W>>
+nmap <C-h> <C-W><
+nmap <C-j> <C-W>-
+nmap <C-k> <C-W>+
+nmap <C-l> <C-W>>
 
 " Useful mappings for managing tabs
 nmap <Leader>ta :tabnew<CR>
