@@ -91,9 +91,7 @@ call plug#end()
 " Set utf8 as standard encoding
 set encoding=utf-8
 set termencoding=utf-8
-
-" Enable multibyte editing
-set fileencodings=ucs-bom,utf-8,default,latin1,gb18030,gb2312,gbk,cp936
+set fileencodings=ucs-bom,utf-8,chinese,cp936
 
 " Sets how many lines of history VIM has to remember
 set history=50
