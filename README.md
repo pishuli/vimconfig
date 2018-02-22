@@ -40,7 +40,7 @@ $ sudo apt-get install silversearcher-ag
 ## Install dependencies for `suan/vim-instant-markdown`
 
 ```bash
-$ sudo apt-get install xdg-utils curl nodejs-legacy npm
+$ sudo apt-get install xdg-utils curl nodejs npm
 $ sudo npm -g install instant-markdown-d
 ```
 
