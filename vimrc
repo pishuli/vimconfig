@@ -106,10 +106,6 @@ set magic
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
-
-" Ignore case when searching
-set ignorecase
 
 " When searching try to be smart about cases
 set smartcase
@@ -202,7 +198,7 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Text, tab
+" Tab & Spaces
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Expand tab with spaces
 set expandtab
@@ -213,11 +209,6 @@ nmap <Leader>rt :retab!<CR>
 "set tabstop=4
 "set shiftwidth=4
 "set softtabstop=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-set wrap "Wrap lines
 
 " Show tabs and trails
 set list listchars=tab:→·,trail:·
