@@ -200,15 +200,14 @@ set whichwrap+=<,>,h,l
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab & Spaces
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Expand tab with spaces
-set expandtab
-nmap <Leader>rt :retab!<CR>
-
-" 1 tab == 4 spaces
-"set smarttab
+" Expand tab with spaces: set et ts=4 sw=4
+"set expandtab
 "set tabstop=4
 "set shiftwidth=4
-"set softtabstop=4
+
+set smarttab
+set softtabstop=-1
+nmap <Leader>rt :retab!<CR>
 
 " Show tabs and trails
 set list listchars=tab:→·,trail:·
