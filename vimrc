@@ -209,9 +209,10 @@ set expandtab
 nmap <Leader>rt :retab!<CR>
 
 " 1 tab == 4 spaces
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+"set smarttab
+"set tabstop=4
+"set shiftwidth=4
+"set softtabstop=4
 
 " Linebreak on 500 characters
 set lbr
