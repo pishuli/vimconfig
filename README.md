@@ -1,12 +1,10 @@
-My vim configuration
-
 ## Install Vim:
 
 ```bash
 $ sudo apt-get install vim
 ```
 
-## Install configuration
+## Download configuration
 
 ```bash
 $ cd
@@ -46,8 +44,6 @@ $ sudo npm -g install instant-markdown-d
 
 ## References
 
-1. http://easwy.com/blog/archives/advanced-vim-skills-catalog/
-2. http://blog.csdn.net/wooin/article/details/1858917
-3. http://blog.csdn.net/wooin/article/details/2004470
-4. http://www.cnblogs.com/zhongcq/p/3642794.html
-5. http://blog.csdn.net/fivedoumi/article/details/50594348
+1. http://www.cnblogs.com/zhongcq/p/3642794.html
+2. http://blog.csdn.net/fivedoumi/article/details/50594348
+3. http://easwy.com/blog/archives/advanced-vim-skills-catalog/
