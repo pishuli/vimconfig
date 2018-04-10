@@ -41,7 +41,7 @@ call plug#begin('~/.vim/bundle')
 " Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
 
-Plug 'tomasr/molokai'
+"Plug 'tomasr/molokai'
 Plug 'kien/ctrlp.vim'
 "Plug 'dyng/ctrlsf.vim'
 Plug 'majutsushi/tagbar'
@@ -80,7 +80,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 
 " Initialize plugin system
 call plug#end()
